@@ -142,13 +142,38 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TableController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\animate.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\paper-dashboard.css" />
+    <Content Include="assets\css\themify-icons.css" />
+    <Content Include="assets\fonts\themify.svg" />
+    <Content Include="assets\img\apple-icon.png" />
+    <Content Include="assets\img\background.jpg" />
+    <Content Include="assets\img\faces\face-0.jpg" />
+    <Content Include="assets\img\faces\face-1.jpg" />
+    <Content Include="assets\img\faces\face-2.jpg" />
+    <Content Include="assets\img\faces\face-3.jpg" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\new_logo.png" />
+    <Content Include="assets\img\tim_80x80.png" />
+    <Content Include="assets\js\bootstrap-checkbox-radio.js" />
+    <Content Include="assets\js\bootstrap-notify.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\chartist.min.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\jquery-1.10.2.js" />
+    <Content Include="assets\js\paper-dashboard.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -160,6 +185,46 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\.DS_Store" />
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\fonts\.DS_Store" />
+    <Content Include="assets\fonts\themify.eot" />
+    <Content Include="assets\fonts\themify.ttf" />
+    <Content Include="assets\fonts\themify.woff" />
+    <Content Include="assets\img\.DS_Store" />
+    <Content Include="assets\img\background\.DS_Store" />
+    <Content Include="assets\img\faces\.DS_Store" />
+    <Content Include="assets\img\tables\.DS_Store" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\sass\.DS_Store" />
+    <Content Include="assets\sass\paper-dashboard.scss" />
+    <Content Include="assets\sass\paper\mixins\_buttons.scss" />
+    <Content Include="assets\sass\paper\mixins\_cards.scss" />
+    <Content Include="assets\sass\paper\mixins\_chartist.scss" />
+    <Content Include="assets\sass\paper\mixins\_icons.scss" />
+    <Content Include="assets\sass\paper\mixins\_inputs.scss" />
+    <Content Include="assets\sass\paper\mixins\_labels.scss" />
+    <Content Include="assets\sass\paper\mixins\_navbars.scss" />
+    <Content Include="assets\sass\paper\mixins\_sidebar.scss" />
+    <Content Include="assets\sass\paper\mixins\_tabs.scss" />
+    <Content Include="assets\sass\paper\mixins\_transparency.scss" />
+    <Content Include="assets\sass\paper\mixins\_vendor-prefixes.scss" />
+    <Content Include="assets\sass\paper\_alerts.scss" />
+    <Content Include="assets\sass\paper\_buttons.scss" />
+    <Content Include="assets\sass\paper\_cards.scss" />
+    <Content Include="assets\sass\paper\_chartist.scss" />
+    <Content Include="assets\sass\paper\_checkbox-radio.scss" />
+    <Content Include="assets\sass\paper\_dropdown.scss" />
+    <Content Include="assets\sass\paper\_footers.scss" />
+    <Content Include="assets\sass\paper\_inputs.scss" />
+    <Content Include="assets\sass\paper\_misc.scss" />
+    <Content Include="assets\sass\paper\_mixins.scss" />
+    <Content Include="assets\sass\paper\_navbars.scss" />
+    <Content Include="assets\sass\paper\_responsive.scss" />
+    <Content Include="assets\sass\paper\_sidebar-and-main-panel.scss" />
+    <Content Include="assets\sass\paper\_tables.scss" />
+    <Content Include="assets\sass\paper\_typography.scss" />
+    <Content Include="assets\sass\paper\_variables.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -185,6 +250,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\Table\TableList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
