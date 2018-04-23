@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="noBordersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CANDIDATE_PROCESS">
+          <Key>
+            <PropertyRef Name="id_process" />
+          </Key>
+          <Property Name="id_candidate" Type="int" Nullable="false" />
+          <Property Name="id_company" Type="int" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+          <Property Name="id_process" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CANDIDATE_STATUS">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CANDIDATES">
+          <Key>
+            <PropertyRef Name="id_candidate" />
+          </Key>
+          <Property Name="id_candidate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="skills" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="language" Type="int" Nullable="false" />
+          <Property Name="experience" Type="int" Nullable="false" />
+          <Property Name="education" Type="int" Nullable="false" />
+          <Property Name="hobbies" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="saved_profile" Type="int" />
+        </EntityType>
+        <EntityType Name="COMPANIES">
+          <Key>
+            <PropertyRef Name="id_company" />
+          </Key>
+          <Property Name="id_company" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="company_website" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CEO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_employees" Type="int" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_creation" Type="date" />
+          <Property Name="annual_income" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="technical_stack" Type="nvarchar" MaxLength="50" />
+          <Property Name="spoken_language" Type="int" Nullable="false" />
+          <Property Name="social_network" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EDUCATIONS">
+          <Key>
+            <PropertyRef Name="id_education" />
+          </Key>
+          <Property Name="id_education" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="school" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="diploma" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="from_date" Type="date" Nullable="false" />
+          <Property Name="to_date" Type="date" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="id_candidate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXPERIENCES">
+          <Key>
+            <PropertyRef Name="id_experience" />
+          </Key>
+          <Property Name="id_experience" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="from_date" Type="date" Nullable="false" />
+          <Property Name="to_date" Type="date" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="id_candidate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LANGUAGES">
+          <Key>
+            <PropertyRef Name="id_language" />
+          </Key>
+          <Property Name="id_language" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="language" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'noBorders.dbo.LOGIN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LOGIN">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGISTRATION COMPANY">
+          <Key>
+            <PropertyRef Name="id_company_registration" />
+          </Key>
+          <Property Name="company_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_company_registration" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGISTRATION_CANDIDATE">
+          <Key>
+            <PropertyRef Name="id_candidate_registration" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_candidate_registration" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CANDIDATE_PROCESS_CANDIDATE_STATUS">
+          <End Role="CANDIDATE_STATUS" Type="Self.CANDIDATE_STATUS" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATE_STATUS">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATE_PROCESS_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATE_PROCESS_COMPANIES">
+          <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANIES">
+              <PropertyRef Name="id_company" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_EDUCATIONS">
+          <End Role="EDUCATIONS" Type="Self.EDUCATIONS" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDUCATIONS">
+              <PropertyRef Name="id_education" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="education" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_EXPERIENCES">
+          <End Role="EXPERIENCES" Type="Self.EXPERIENCES" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPERIENCES">
+              <PropertyRef Name="id_experience" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="experience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_LANGUAGES">
+          <End Role="LANGUAGES" Type="Self.LANGUAGES" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGES">
+              <PropertyRef Name="id_language" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANIES_LANGUAGES">
+          <End Role="LANGUAGES" Type="Self.LANGUAGES" Multiplicity="1" />
+          <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGES">
+              <PropertyRef Name="id_language" />
+            </Principal>
+            <Dependent Role="COMPANIES">
+              <PropertyRef Name="spoken_language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EDUCATIONS_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="EDUCATIONS" Type="Self.EDUCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="EDUCATIONS">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPERIENCES_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="EXPERIENCES" Type="Self.EXPERIENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="EXPERIENCES">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="noBordersModelStoreContainer">
+          <EntitySet Name="CANDIDATE_PROCESS" EntityType="Self.CANDIDATE_PROCESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CANDIDATE_STATUS" EntityType="Self.CANDIDATE_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CANDIDATES" EntityType="Self.CANDIDATES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EDUCATIONS" EntityType="Self.EDUCATIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXPERIENCES" EntityType="Self.EXPERIENCES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGISTRATION COMPANY" EntityType="Self.REGISTRATION COMPANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGISTRATION_CANDIDATE" EntityType="Self.REGISTRATION_CANDIDATE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGIN" EntityType="Self.LOGIN" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LOGIN].[email] AS [email], 
+    [LOGIN].[password] AS [password]
+    FROM [dbo].[LOGIN] AS [LOGIN]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_CANDIDATE_STATUS" Association="Self.FK_CANDIDATE_PROCESS_CANDIDATE_STATUS">
+            <End Role="CANDIDATE_STATUS" EntitySet="CANDIDATE_STATUS" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_CANDIDATES" Association="Self.FK_CANDIDATE_PROCESS_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_COMPANIES" Association="Self.FK_CANDIDATE_PROCESS_COMPANIES">
+            <End Role="COMPANIES" EntitySet="COMPANIES" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_EDUCATIONS" Association="Self.FK_CANDIDATES_EDUCATIONS">
+            <End Role="EDUCATIONS" EntitySet="EDUCATIONS" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_EXPERIENCES" Association="Self.FK_CANDIDATES_EXPERIENCES">
+            <End Role="EXPERIENCES" EntitySet="EXPERIENCES" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_LANGUAGES" Association="Self.FK_CANDIDATES_LANGUAGES">
+            <End Role="LANGUAGES" EntitySet="LANGUAGES" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANIES_LANGUAGES" Association="Self.FK_COMPANIES_LANGUAGES">
+            <End Role="LANGUAGES" EntitySet="LANGUAGES" />
+            <End Role="COMPANIES" EntitySet="COMPANIES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EDUCATIONS_CANDIDATES" Association="Self.FK_EDUCATIONS_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="EDUCATIONS" EntitySet="EDUCATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPERIENCES_CANDIDATES" Association="Self.FK_EXPERIENCES_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="EXPERIENCES" EntitySet="EXPERIENCES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="noBordersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CANDIDATE_PROCESS">
+          <Key>
+            <PropertyRef Name="id_process" />
+          </Key>
+          <Property Name="id_candidate" Type="Int32" Nullable="false" />
+          <Property Name="id_company" Type="Int32" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <Property Name="id_process" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CANDIDATE_STATUS" Relationship="Self.FK_CANDIDATE_PROCESS_CANDIDATE_STATUS" FromRole="CANDIDATE_PROCESS" ToRole="CANDIDATE_STATUS" />
+          <NavigationProperty Name="CANDIDATES" Relationship="Self.FK_CANDIDATE_PROCESS_CANDIDATES" FromRole="CANDIDATE_PROCESS" ToRole="CANDIDATES" />
+          <NavigationProperty Name="COMPANIES" Relationship="Self.FK_CANDIDATE_PROCESS_COMPANIES" FromRole="CANDIDATE_PROCESS" ToRole="COMPANIES" />
+        </EntityType>
+        <EntityType Name="CANDIDATE_STATUS">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CANDIDATE_PROCESS" Relationship="Self.FK_CANDIDATE_PROCESS_CANDIDATE_STATUS" FromRole="CANDIDATE_STATUS" ToRole="CANDIDATE_PROCESS" />
+        </EntityType>
+        <EntityType Name="CANDIDATES">
+          <Key>
+            <PropertyRef Name="id_candidate" />
+          </Key>
+          <Property Name="id_candidate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="language" Type="Int32" Nullable="false" />
+          <Property Name="experience" Type="Int32" Nullable="false" />
+          <Property Name="education" Type="Int32" Nullable="false" />
+          <Property Name="hobbies" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="saved_profile" Type="Int32" />
+          <NavigationProperty Name="CANDIDATE_PROCESS" Relationship="Self.FK_CANDIDATE_PROCESS_CANDIDATES" FromRole="CANDIDATES" ToRole="CANDIDATE_PROCESS" />
+          <NavigationProperty Name="EDUCATIONS" Relationship="Self.FK_CANDIDATES_EDUCATIONS" FromRole="CANDIDATES" ToRole="EDUCATIONS" />
+          <NavigationProperty Name="EXPERIENCES" Relationship="Self.FK_CANDIDATES_EXPERIENCES" FromRole="CANDIDATES" ToRole="EXPERIENCES" />
+          <NavigationProperty Name="LANGUAGES" Relationship="Self.FK_CANDIDATES_LANGUAGES" FromRole="CANDIDATES" ToRole="LANGUAGES" />
+          <NavigationProperty Name="EDUCATIONS1" Relationship="Self.FK_EDUCATIONS_CANDIDATES" FromRole="CANDIDATES" ToRole="EDUCATIONS" />
+          <NavigationProperty Name="EXPERIENCES1" Relationship="Self.FK_EXPERIENCES_CANDIDATES" FromRole="CANDIDATES" ToRole="EXPERIENCES" />
+        </EntityType>
+        <EntityType Name="COMPANIES">
+          <Key>
+            <PropertyRef Name="id_company" />
+          </Key>
+          <Property Name="id_company" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="company_website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CEO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="no_employees" Type="Int32" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_creation" Type="DateTime" Precision="0" />
+          <Property Name="annual_income" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="technical_stack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="spoken_language" Type="Int32" Nullable="false" />
+          <Property Name="social_network" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CANDIDATE_PROCESS" Relationship="Self.FK_CANDIDATE_PROCESS_COMPANIES" FromRole="COMPANIES" ToRole="CANDIDATE_PROCESS" />
+          <NavigationProperty Name="LANGUAGES" Relationship="Self.FK_COMPANIES_LANGUAGES" FromRole="COMPANIES" ToRole="LANGUAGES" />
+        </EntityType>
+        <EntityType Name="EDUCATIONS">
+          <Key>
+            <PropertyRef Name="id_education" />
+          </Key>
+          <Property Name="id_education" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="school" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diploma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="from_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="to_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_candidate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CANDIDATES" Relationship="Self.FK_CANDIDATES_EDUCATIONS" FromRole="EDUCATIONS" ToRole="CANDIDATES" />
+          <NavigationProperty Name="CANDIDATES1" Relationship="Self.FK_EDUCATIONS_CANDIDATES" FromRole="EDUCATIONS" ToRole="CANDIDATES" />
+        </EntityType>
+        <EntityType Name="EXPERIENCES">
+          <Key>
+            <PropertyRef Name="id_experience" />
+          </Key>
+          <Property Name="id_experience" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="from_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="to_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_candidate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CANDIDATES" Relationship="Self.FK_CANDIDATES_EXPERIENCES" FromRole="EXPERIENCES" ToRole="CANDIDATES" />
+          <NavigationProperty Name="CANDIDATES1" Relationship="Self.FK_EXPERIENCES_CANDIDATES" FromRole="EXPERIENCES" ToRole="CANDIDATES" />
+        </EntityType>
+        <EntityType Name="LANGUAGES">
+          <Key>
+            <PropertyRef Name="id_language" />
+          </Key>
+          <Property Name="id_language" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CANDIDATES" Relationship="Self.FK_CANDIDATES_LANGUAGES" FromRole="LANGUAGES" ToRole="CANDIDATES" />
+          <NavigationProperty Name="COMPANIES" Relationship="Self.FK_COMPANIES_LANGUAGES" FromRole="LANGUAGES" ToRole="COMPANIES" />
+        </EntityType>
+        <EntityType Name="REGISTRATION_COMPANY">
+          <Key>
+            <PropertyRef Name="id_company_registration" />
+          </Key>
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_company_registration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="REGISTRATION_CANDIDATE">
+          <Key>
+            <PropertyRef Name="id_candidate_registration" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_candidate_registration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="LOGIN">
+          <Key>
+            <PropertyRef Name="email" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CANDIDATE_PROCESS_CANDIDATE_STATUS">
+          <End Role="CANDIDATE_STATUS" Type="Self.CANDIDATE_STATUS" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATE_STATUS">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATE_PROCESS_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATE_PROCESS_COMPANIES">
+          <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="1" />
+          <End Role="CANDIDATE_PROCESS" Type="Self.CANDIDATE_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANIES">
+              <PropertyRef Name="id_company" />
+            </Principal>
+            <Dependent Role="CANDIDATE_PROCESS">
+              <PropertyRef Name="id_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_EDUCATIONS">
+          <End Role="EDUCATIONS" Type="Self.EDUCATIONS" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDUCATIONS">
+              <PropertyRef Name="id_education" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="education" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_EXPERIENCES">
+          <End Role="EXPERIENCES" Type="Self.EXPERIENCES" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPERIENCES">
+              <PropertyRef Name="id_experience" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="experience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANDIDATES_LANGUAGES">
+          <End Role="LANGUAGES" Type="Self.LANGUAGES" Multiplicity="1" />
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGES">
+              <PropertyRef Name="id_language" />
+            </Principal>
+            <Dependent Role="CANDIDATES">
+              <PropertyRef Name="language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EDUCATIONS_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="EDUCATIONS" Type="Self.EDUCATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="EDUCATIONS">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPERIENCES_CANDIDATES">
+          <End Role="CANDIDATES" Type="Self.CANDIDATES" Multiplicity="1" />
+          <End Role="EXPERIENCES" Type="Self.EXPERIENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANDIDATES">
+              <PropertyRef Name="id_candidate" />
+            </Principal>
+            <Dependent Role="EXPERIENCES">
+              <PropertyRef Name="id_candidate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANIES_LANGUAGES">
+          <End Role="LANGUAGES" Type="Self.LANGUAGES" Multiplicity="1" />
+          <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGES">
+              <PropertyRef Name="id_language" />
+            </Principal>
+            <Dependent Role="COMPANIES">
+              <PropertyRef Name="spoken_language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="noBordersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CANDIDATE_PROCESS" EntityType="Self.CANDIDATE_PROCESS" />
+          <EntitySet Name="CANDIDATE_STATUS" EntityType="Self.CANDIDATE_STATUS" />
+          <EntitySet Name="CANDIDATES" EntityType="Self.CANDIDATES" />
+          <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" />
+          <EntitySet Name="EDUCATIONS" EntityType="Self.EDUCATIONS" />
+          <EntitySet Name="EXPERIENCES" EntityType="Self.EXPERIENCES" />
+          <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" />
+          <EntitySet Name="REGISTRATION_COMPANY" EntityType="Self.REGISTRATION_COMPANY" />
+          <EntitySet Name="REGISTRATION_CANDIDATE" EntityType="Self.REGISTRATION_CANDIDATE" />
+          <EntitySet Name="LOGIN" EntityType="Self.LOGIN" />
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_CANDIDATE_STATUS" Association="Self.FK_CANDIDATE_PROCESS_CANDIDATE_STATUS">
+            <End Role="CANDIDATE_STATUS" EntitySet="CANDIDATE_STATUS" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_CANDIDATES" Association="Self.FK_CANDIDATE_PROCESS_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATE_PROCESS_COMPANIES" Association="Self.FK_CANDIDATE_PROCESS_COMPANIES">
+            <End Role="COMPANIES" EntitySet="COMPANIES" />
+            <End Role="CANDIDATE_PROCESS" EntitySet="CANDIDATE_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_EDUCATIONS" Association="Self.FK_CANDIDATES_EDUCATIONS">
+            <End Role="EDUCATIONS" EntitySet="EDUCATIONS" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_EXPERIENCES" Association="Self.FK_CANDIDATES_EXPERIENCES">
+            <End Role="EXPERIENCES" EntitySet="EXPERIENCES" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANDIDATES_LANGUAGES" Association="Self.FK_CANDIDATES_LANGUAGES">
+            <End Role="LANGUAGES" EntitySet="LANGUAGES" />
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EDUCATIONS_CANDIDATES" Association="Self.FK_EDUCATIONS_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="EDUCATIONS" EntitySet="EDUCATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPERIENCES_CANDIDATES" Association="Self.FK_EXPERIENCES_CANDIDATES">
+            <End Role="CANDIDATES" EntitySet="CANDIDATES" />
+            <End Role="EXPERIENCES" EntitySet="EXPERIENCES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANIES_LANGUAGES" Association="Self.FK_COMPANIES_LANGUAGES">
+            <End Role="LANGUAGES" EntitySet="LANGUAGES" />
+            <End Role="COMPANIES" EntitySet="COMPANIES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="noBordersModelStoreContainer" CdmEntityContainer="noBordersEntities">
+          <EntitySetMapping Name="CANDIDATE_PROCESS">
+            <EntityTypeMapping TypeName="noBordersModel.CANDIDATE_PROCESS">
+              <MappingFragment StoreEntitySet="CANDIDATE_PROCESS">
+                <ScalarProperty Name="id_candidate" ColumnName="id_candidate" />
+                <ScalarProperty Name="id_company" ColumnName="id_company" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_process" ColumnName="id_process" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CANDIDATE_STATUS">
+            <EntityTypeMapping TypeName="noBordersModel.CANDIDATE_STATUS">
+              <MappingFragment StoreEntitySet="CANDIDATE_STATUS">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CANDIDATES">
+            <EntityTypeMapping TypeName="noBordersModel.CANDIDATES">
+              <MappingFragment StoreEntitySet="CANDIDATES">
+                <ScalarProperty Name="id_candidate" ColumnName="id_candidate" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="hobbies" ColumnName="hobbies" />
+                <ScalarProperty Name="saved_profile" ColumnName="saved_profile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANIES">
+            <EntityTypeMapping TypeName="noBordersModel.COMPANIES">
+              <MappingFragment StoreEntitySet="COMPANIES">
+                <ScalarProperty Name="id_company" ColumnName="id_company" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="company_website" ColumnName="company_website" />
+                <ScalarProperty Name="CEO" ColumnName="CEO" />
+                <ScalarProperty Name="no_employees" ColumnName="no_employees" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+                <ScalarProperty Name="annual_income" ColumnName="annual_income" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="technical_stack" ColumnName="technical_stack" />
+                <ScalarProperty Name="spoken_language" ColumnName="spoken_language" />
+                <ScalarProperty Name="social_network" ColumnName="social_network" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDUCATIONS">
+            <EntityTypeMapping TypeName="noBordersModel.EDUCATIONS">
+              <MappingFragment StoreEntitySet="EDUCATIONS">
+                <ScalarProperty Name="id_education" ColumnName="id_education" />
+                <ScalarProperty Name="school" ColumnName="school" />
+                <ScalarProperty Name="diploma" ColumnName="diploma" />
+                <ScalarProperty Name="from_date" ColumnName="from_date" />
+                <ScalarProperty Name="to_date" ColumnName="to_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id_candidate" ColumnName="id_candidate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXPERIENCES">
+            <EntityTypeMapping TypeName="noBordersModel.EXPERIENCES">
+              <MappingFragment StoreEntitySet="EXPERIENCES">
+                <ScalarProperty Name="id_experience" ColumnName="id_experience" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="from_date" ColumnName="from_date" />
+                <ScalarProperty Name="to_date" ColumnName="to_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id_candidate" ColumnName="id_candidate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LANGUAGES">
+            <EntityTypeMapping TypeName="noBordersModel.LANGUAGES">
+              <MappingFragment StoreEntitySet="LANGUAGES">
+                <ScalarProperty Name="id_language" ColumnName="id_language" />
+                <ScalarProperty Name="language" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGISTRATION_COMPANY">
+            <EntityTypeMapping TypeName="noBordersModel.REGISTRATION_COMPANY">
+              <MappingFragment StoreEntitySet="REGISTRATION COMPANY">
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_company_registration" ColumnName="id_company_registration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGISTRATION_CANDIDATE">
+            <EntityTypeMapping TypeName="noBordersModel.REGISTRATION_CANDIDATE">
+              <MappingFragment StoreEntitySet="REGISTRATION_CANDIDATE">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_candidate_registration" ColumnName="id_candidate_registration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGIN">
+            <EntityTypeMapping TypeName="noBordersModel.LOGIN">
+              <MappingFragment StoreEntitySet="LOGIN">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

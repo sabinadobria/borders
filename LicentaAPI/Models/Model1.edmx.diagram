@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c5ced847cf946cf9c1fd664b07efcad" Name="Diagram1">
+        <EntityTypeShape EntityType="noBordersModel.CANDIDATE_PROCESS" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.CANDIDATE_STATUS" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.CANDIDATES" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.COMPANIES" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.EDUCATIONS" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.EXPERIENCES" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.LANGUAGES" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.REGISTRATION_COMPANY" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.REGISTRATION_CANDIDATE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="noBordersModel.LOGIN" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATE_PROCESS_CANDIDATE_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATE_PROCESS_CANDIDATES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATE_PROCESS_COMPANIES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATES_EDUCATIONS" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATES_EXPERIENCES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_CANDIDATES_LANGUAGES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_EDUCATIONS_CANDIDATES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_EXPERIENCES_CANDIDATES" ManuallyRouted="false" />
+        <AssociationConnector Association="noBordersModel.FK_COMPANIES_LANGUAGES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
