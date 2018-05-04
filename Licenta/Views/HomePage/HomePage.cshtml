@@ -1,19 +1,32 @@
-﻿
-@{
+﻿@{ 
     Layout = null;
 }
-
 <!DOCTYPE html>
-
-<html>
+<html lang='en'>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>HomePage</title>
-    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <meta class="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>No Borders </title>
+    <!-- Don't forget to add your metadata here -->
+    <link href="~/assets/Envi/style.min.css" rel="stylesheet" />
 </head>
-<body style="background-image: url('../../assets/img/header-bg.jpg');">
-    <div>
-        <button type="button" class="btn btn-info active" style="display: flex;  align-items: center;  justify-content: center;">Active info button</button>
+<body>
+
+    <!-- Hero unit -->
+    <div class="hero"style="background-image: url('../../assets/Envi/evie_default_bg.jpeg');">
+        <div class="hero__overlay hero__overlay--gradient"style="opacity:.30;"></div>
+
+        <div class="hero__inner">
+            <div class="container">
+                <div class="hero__content">
+                    <div class="hero__content__inner" id='navConverter'>
+                        <h1 class="hero__title">No Borders</h1>
+                        <a href="/Login/Login" class="button button__accent">Candidate Login</a>
+                        <a href="/Login/Login" class="button button__accent">Company Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
+        </body>
 </html>

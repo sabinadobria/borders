@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Licenta.Models;
+using LicentaBUS.BusinessLayer;
+using NoBordersConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,7 @@ namespace Licenta.Controllers
         // GET: Table
         public ActionResult TableList()
         {
-            return View();
+                 return View(Candidate.GetCandidates());
         }
     }
 }

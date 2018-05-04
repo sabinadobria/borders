@@ -10,6 +10,7 @@ namespace Licenta.Controllers
     {
         public ActionResult LogIn()
         {
+
             return View();
         }
 

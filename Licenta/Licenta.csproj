@@ -166,10 +166,17 @@
     <Content Include="assets\css\animate.min.css" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\full-slider.css" />
     <Content Include="assets\css\paper-dashboard.css" />
     <Content Include="assets\css\sb-admin.css" />
     <Content Include="assets\css\sb-admin.min.css" />
     <Content Include="assets\css\themify-icons.css" />
+    <Content Include="assets\Envi\app.js" />
+    <Content Include="assets\Envi\app.min.js" />
+    <Content Include="assets\Envi\evie_default_bg.jpeg" />
+    <Content Include="assets\Envi\hero_sm.png" />
+    <Content Include="assets\Envi\style.css" />
+    <Content Include="assets\Envi\style.min.css" />
     <Content Include="assets\fonts\themify.svg" />
     <Content Include="assets\img\apple-icon.png" />
     <Content Include="assets\img\background.jpg" />
@@ -337,6 +344,8 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\HomePage\HomePage.cshtml" />
+    <Content Include="Views\User\UserDetails.cshtml" />
+    <Content Include="Views\User\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +362,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LicentaBUS\LicentaBUS.csproj">
+      <Project>{3bce930f-8718-4875-b982-f243381df570}</Project>
+      <Name>LicentaBUS</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
