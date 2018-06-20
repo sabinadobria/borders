@@ -14,7 +14,12 @@ namespace Licenta.Controllers
             return View();
         }
 
-        public ActionResult Register()
+        public ActionResult RegisterCandidate()
+        {
+            return View();
+        }
+
+        public ActionResult RegisterCompany()
         {
             return View();
         }
