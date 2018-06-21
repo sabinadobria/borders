@@ -11,7 +11,7 @@ namespace LicentaAPI.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            ViewBag.Title = "Candidate Home Page";
             return View();
         }
     }

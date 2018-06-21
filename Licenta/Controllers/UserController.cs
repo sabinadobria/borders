@@ -9,7 +9,7 @@ namespace Licenta.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
+        // GET:User
         public ActionResult UserProfile()
         {
             return View();
@@ -21,19 +21,21 @@ namespace Licenta.Controllers
             return View(Candidate.GetCandidateById(id));
         }
 
+        [HttpGet]
         public ActionResult UserDetails(int id)
         {
             return View(Candidate.GetCandidateById(id));
         }
 
-        [HttpPost]
-        public ActionResult Edit(Candidate candidate)
-        {
-            var dataContext = new PetaPoco.Database("sqlserverce");
-            dataContext.Update("Candidate", "id_candidate", candidate);
-            return RedirectToAction("TableList","Table");
-        }
+        //[HttpPost]
+        //public ActionResult Edit(Candidate candidate)
+        //{
+        //    var dataContext = new PetaPoco.Database("sqlserverce");
+        //    dataContext.Update("Candidate", "id_candidate", candidate);
+        //    return RedirectToAction("TableList","Table");
+        //}
 
+        
         //public ActionResult Delete(int id)
         //{
 
