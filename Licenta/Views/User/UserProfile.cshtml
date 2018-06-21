@@ -39,13 +39,12 @@
 <body>
 
     <div class="wrapper">
-
         <div class="sidebar" data-background-color="black" data-active-color="danger">
 
             <!--
-                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-            -->
+            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+            Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+        -->
 
             <div class="sidebar-wrapper">
                 <div class="logo">
@@ -67,10 +66,37 @@
                             <p>My Profile</p>
                         </a>
                     </li>
+                    <li style="left:25px;">
+                        <i class="ti-map"></i>
+                        <p>Country I want to work</p>
+                        <select class="form-control border-input" id="countrydrp" style="width:215px;">
+                            <option>Select Country</option>
+                            <option>Romania</option>
+                            <option>France</option>
+                            <option>United Kingodm</option>
+                            <option>Italy</option>
+                        </select>
+
+                    </li>
+                    <li style="left:25px;">
+                        <i class="ti-map"></i>
+                        <p>Opportunities interest</p>
+                        <select class="form-control border-input" id="opportunitydrp" style="width:215px;">
+                            <option>Select status</option>
+                            <option>Active search</option>
+                            <option>I'm searching occasionally</option>
+                            <option>Interested, but not searching</option>
+                            <option>Not interested</option>
+                        </select>
+
+
+
+                    </li>
 
                 </ul>
             </div>
         </div>
+
         <div class="main-panel">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -111,13 +137,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Company" value="Chet">
+                                                <input type="text" class="form-control border-input" disabled placeholder="Company" value="Sabina">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Last Name" value="Faker">
+                                                <input type="text" class="form-control border-input" disabled placeholder="Last Name" value="Dobria">
                                             </div>
                                         </div>
                                     </div>
@@ -163,29 +189,8 @@
 
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Orasul</label>
-                                                <select class="form-control border-input" disabled id="citydrp">
-                                                    <option>Select City</option>
-                                                    <option>Bucuresti</option>
-                                                    <option>Cluj</option>
-                                                    <option>Timisoara</option>
-                                                    <option>Iasi</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Country I want to move</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Country" value="Australia">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
+                                    
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -255,20 +260,27 @@ But that's the difference in our opinions.</textarea>
                                     <h4 class="title">Studies</h4>
                                     <br />
                                     <div class="row" style="margin-right:1px;">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>University</label>
                                                 <input type="text" class="form-control border-input" disabled placeholder="Ex: ASE Bucuresti" value="">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Section</label>
                                                 <input type="text" class="form-control border-input" disabled placeholder="Ex: Cibernetica " value="">
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Diploma</label>
+                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Bachelor's degree " value="">
+                                            </div>
+                                        </div>
 
-                                        <div class="col-md-4">
+
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Year</label>
                                                 <select class="form-control border-input" disabled id="citydrp">
@@ -285,34 +297,7 @@ But that's the difference in our opinions.</textarea>
                                     </div>
 
                                     <div class="row" style="margin-right:9px;">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Master</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: ASE Bucuresti" value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Section</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Cibernetica " value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Year</label>
-                                                <select class="form-control border-input" disabled id="citydrp">
-                                                    <option>--Select--</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>Finished</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
+                                        
                                         <div class="form-group" style="margin-left:15px;">
                                             <label>Add more</label>
                                             <a href="#">
@@ -380,7 +365,7 @@ But that's the difference in our opinions.</textarea>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-info btn-fill">Update Profile</button>
                                         <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
-                                        <button type="submit" class="btn btn-info btn-fill">Upload CV</button>
+                                       
                                     </div>
                                 </form>
                             </div>

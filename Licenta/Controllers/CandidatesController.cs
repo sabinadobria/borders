@@ -9,10 +9,10 @@ using System.Web.Mvc;
 
 namespace Licenta.Controllers
 {
-    public class TableController : Controller
+    public class CandidatesController : Controller
     {
         // GET: Table
-        public ActionResult TableList()
+        public ActionResult CandidatesList()
         {
                  return View(Candidate.GetCandidates());
         }
