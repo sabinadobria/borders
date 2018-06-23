@@ -148,6 +148,7 @@
     <Compile Include="Controllers\CandidatesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataLayer\CandidateRegisterDL.cs" />
+    <Compile Include="DataLayer\RecruiterRegisterDL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -80,10 +80,29 @@ namespace Licenta.Controllers
                 return View();
             }
         }
-
+        [HttpGet]
         public ActionResult RegisterCompany()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterCompany(CompanyRegister company)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    RecruiterRegisterDL recruiterDL = new RecruiterRegisterDL();
+                    recruiterDL.registerRecruiter(company);
+                    return RedirectToAction("CandidatesList", "Candidates");
+                }
+                return View();
+
+            } catch
+            {
+                return View();
+
+            }
         }
 
         public ActionResult ForgotPassword()

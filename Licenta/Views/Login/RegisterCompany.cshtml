@@ -1,4 +1,4 @@
-﻿
+﻿@model Licenta.Models.CompanyRegister
 @{
     Layout = null;
 }
@@ -27,53 +27,101 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Register an Account</div>
             <div class="card-body">
-                <form>
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true, "", new { @style = "color:red" });
+
+
                     <div class="form-group">
-                        <label for="exampleInputCompanyName">Company name</label>
-                        <input class="form-control" id="exampleInputCompanyName" type="text" aria-describedby="companyNameHelp" placeholder="Enter company name">
+                        @Html.LabelFor(company => company.company_name)
+                        @Html.TextBoxFor(company => company.company_name, new { @class = "form-control", @placeholder = "Enter company name" })
+                        @Html.ValidationMessageFor(company => company.company_name, "", new { @class = "text-danger" })
+
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="exampleInputName">First name</label>
-                                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name">
+                                @Html.LabelFor(company => company.first_name)
+                                @Html.TextBoxFor(company => company.first_name, new { @class = "form-control", @placeholder = "Enter first name" })
+                                @Html.ValidationMessageFor(company => company.first_name, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="col-md-6">
-                                <label for="exampleInputLastName">Last name</label>
-                                <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name">
+                                @Html.LabelFor(company => company.last_name)
+                                @Html.TextBoxFor(company => company.last_name, new { @class = "form-control", @placeholder = "Enter last name" })
+                                @Html.ValidationMessageFor(company => company.last_name, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        @Html.LabelFor(company => company.email)
+                        @Html.TextBoxFor(company => company.email, new { @class = "form-control", @placeholder = "Enter email" })
+                        @Html.ValidationMessageFor(company => company.email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                                @Html.LabelFor(company => company.password)
+                                @Html.TextBoxFor(company => company.password, new { @class = "form-control", @placeholder = "Enter password", @type = "password", @id = "inputPassword" })
+                                @Html.ValidationMessageFor(company => company.password, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-6">
                                 <label for="exampleConfirmPassword">Confirm password</label>
-                                <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password">
+                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm password" onkeyup="checkPass(); return false;">
+                                <span id="confirmMessage" class="confirmMessage"></span>
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-primary btn-block" href="/candidates/candidateslist">Register</a>
-                </form>
-                <div class="text-center">
-                    <a class="d-block small mt-3" href="/Login/Login">Login Page</a>
-                    <a class="d-block small" href="/Login/ForgotPassword">Forgot Password?</a>
-                </div>
+
+                    <button type="submit" value="Submit" class="btn btn-primary btn-block">Register</button>
+                }
+            </div>
+            <div class="text-center">
+                <a class="d-block small mt-3" href="/Login/Login">Login Page</a>
+                <a class="d-block small" href="/Login/RegisterCompany">Register as a Recruiter</a>
             </div>
         </div>
     </div>
+
     <!-- Bootstrap core JavaScript-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script>
+        function checkPass() {
+            //Store the password field objects into variables ...
+            var pass1 = document.getElementById('inputPassword');
+            var pass2 = document.getElementById('confirmPassword');
+            //Store the Confimation Message Object ...
+            var message = document.getElementById('confirmMessage');
+            //Set the colors we will be using ...
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+            //Compare the values in the password field
+            //and the confirmation field
+            if (pass1.value == pass2.value) {
+                //The passwords match.
+                //Set the color to the good color and inform
+                //the user that they have entered the correct password
+                pass2.style.backgroundColor = goodColor;
+                message.style.color = goodColor;
+                message.innerHTML = "Passwords Match!"
+            } else {
+                //The passwords do not match.
+                //Set the color to the bad color and
+                //notify the user.
+                pass2.style.backgroundColor = badColor;
+                message.style.color = badColor;
+                message.innerHTML = "Passwords Do Not Match!"
+            }
+        }
+    </script>
 </body>
 
 </html>
