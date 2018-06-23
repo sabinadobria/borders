@@ -38,7 +38,7 @@ using System.Linq;
 using System.Web;
 using PetaPoco;
 
-namespace NoBordersConnection
+namespace NoBordersConnectionDb
 {
 
 	public partial class NoBordersConnectionDB : Database
@@ -536,7 +536,7 @@ namespace NoBordersConnection
 
 	[ExplicitColumns]
 
-    public partial class LOGIN : NoBordersConnectionDB.Record<LOGIN>  
+    public partial class USER : NoBordersConnectionDB.Record<USER>  
     {
 
 

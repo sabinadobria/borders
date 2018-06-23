@@ -1,4 +1,4 @@
-﻿using NoBordersConnection;
+﻿using NoBordersConnectionDb;
 using PetaPoco;
 using System;
 using System.Collections.Generic;

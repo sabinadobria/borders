@@ -147,19 +147,13 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\CandidatesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DataLayer\CandidateRegisterDL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CANDIDATES.cs" />
-    <Compile Include="Models\CANDIDATE_PROCESS.cs" />
-    <Compile Include="Models\CANDIDATE_STATUS.cs" />
-    <Compile Include="Models\COMPANIES.cs" />
-    <Compile Include="Models\EDUCATIONS.cs" />
-    <Compile Include="Models\EXPERIENCES.cs" />
-    <Compile Include="Models\LANGUAGES.cs" />
-    <Compile Include="Models\LOGIN.cs" />
-    <Compile Include="Models\REGISTRATION_CANDIDATE.cs" />
-    <Compile Include="Models\REGISTRATION_COMPANY.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\CandidateRegister.cs" />
+    <Compile Include="Models\CompanyRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

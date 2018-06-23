@@ -1,6 +1,6 @@
 ﻿using Licenta.Models;
 using LicentaBUS.BusinessLayer;
-using NoBordersConnection;
+using NoBordersConnectionDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ namespace Licenta.Controllers
     public class CandidatesController : Controller
     {
         // GET: Table
+       
         public ActionResult CandidatesList()
         {
                  return View(Candidate.GetCandidates());

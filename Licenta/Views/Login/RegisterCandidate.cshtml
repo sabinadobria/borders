@@ -1,4 +1,4 @@
-﻿
+﻿@model Licenta.Models.CandidateRegister
 @{
     Layout = null;
 }
@@ -27,49 +27,98 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Register an Account</div>
             <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputName">First name</label>
-                                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name">
+                <div class="card-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true, "", new { @style = "color:red" });
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(candidate => candidate.first_name)
+                                    @Html.TextBoxFor(candidate => candidate.first_name, new { @class = "form-control", @placeholder = "Enter first name" })
+                                    @Html.ValidationMessageFor(candidate => candidate.first_name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(candidate => candidate.last_name)
+                                    @Html.TextBoxFor(candidate => candidate.last_name, new { @class = "form-control", @placeholder = "Enter last name" })
+                                    @Html.ValidationMessageFor(candidate => candidate.last_name, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputLastName">Last name</label>
-                                <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(candidate => candidate.email)
+                                        @Html.TextBoxFor(candidate => candidate.email, new { @class = "form-control", @placeholder = "Enter email" })
+                                        @Html.ValidationMessageFor(candidate => candidate.email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(candidate => candidate.password)
+                                        @Html.TextBoxFor(candidate => candidate.password, new { @class = "form-control", @id = "inputPassword", @type = "password", @placeholder = "Enter password" })
+                                        @Html.ValidationMessageFor(candidate => candidate.password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleConfirmPassword">Confirm Password</label>
+                                        <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm password" onkeyup="checkPass(); return false;" />
+                                        <span id="confirmMessage" class="confirmMessage"></span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleConfirmPassword">Confirm password</label>
-                                <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password">
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn btn-primary btn-block" href="login.html">Register</a>
-                </form>
+                        <button type="submit" value="Submit" class="btn btn-primary btn-block">Register</button>
+
+                    }
+
+                </div>
                 <div class="text-center">
+                    <a class="d-block small" href="/Login/registercompany">Register as a Recruiter</a>
                     <a class="d-block small mt-3" href="/Login/Login">Login Page</a>
-                    <a class="d-block small" href="/Login/ForgotPassword">Forgot Password?</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script>
+        function checkPass() {
+            //Store the password field objects into variables ...
+            var pass1 = document.getElementById('inputPassword');
+            var pass2 = document.getElementById('confirmPassword');
+            //Store the Confimation Message Object ...
+            var message = document.getElementById('confirmMessage');
+            //Set the colors we will be using ...
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+            //Compare the values in the password field 
+            //and the confirmation field
+            if (pass1.value == pass2.value) {
+                //The passwords match. 
+                //Set the color to the good color and inform
+                //the user that they have entered the correct password 
+                pass2.style.backgroundColor = goodColor;
+                message.style.color = goodColor;
+                message.innerHTML = "Passwords Match!"
+            } else {
+                //The passwords do not match.
+                //Set the color to the bad color and
+                //notify the user.
+                pass2.style.backgroundColor = badColor;
+                message.style.color = badColor;
+                message.innerHTML = "Passwords Do Not Match!"
+            }
+        }  
+    </script>
 </body>
 
 </html>
