@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\CandidateBus.cs" />
+    <Compile Include="BusinessLayer\CandidateRegisterBus.cs" />
+    <Compile Include="BusinessLayer\UserBus.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Models\Generated\Database.cs">
       <AutoGen>True</AutoGen>

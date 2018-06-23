@@ -1,7 +1,8 @@
-﻿
+﻿@model  Licenta.Models.UserModel
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,24 +26,28 @@
         <div class="card card-login mx-auto mt-5">
             <div class="card-header">Login</div>
             <div class="card-body">
-                <form>
+
+                @using (Html.BeginForm())
+                {
+                     @Html.ValidationSummary(true, "", new {@style="color:red"});
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+                        @Html.LabelFor(user => user.email)
+                        @Html.TextBoxFor(user => user.email, new { @class = "form-control", @placeholder = "Enter email" })
+                        @Html.ValidationMessageFor(user => user.email, "", new { @class = "text-danger"})
+
+
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                        @Html.LabelFor(user => user.password)
+                        @Html.TextBoxFor(user => user.password, new { @class = "form-control", @type = "password", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(user => user.password,"", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox"> Remember Password
-                            </label>
-                        </div>
-                    </div>
-                    <a class="btn btn-primary btn-block" href="/user/userprofile">Login</a>
-                </form>
+                    <button type="submit" value="Submit" class="btn btn-primary btn-block">Login</button>
+
+                }
+
+
                 <div class="text-center">
                     <a class="d-block small mt-3" href="/Login/registercandidate">Register as a Candidate</a>
                     <a class="d-block small" href="/Login/registercompany">Register as a Recruiter</a>
@@ -52,6 +57,9 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->

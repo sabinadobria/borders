@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Licenta.Models
 {
-    public partial class REGISTRATION_COMPANY
+    public partial class CompanyRegister
     {
         public string company_name { get; set; }
         public string email { get; set; }
