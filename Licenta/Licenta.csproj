@@ -361,6 +361,7 @@
     <Content Include="Views\User\UserDetails.cshtml" />
     <Content Include="Views\User\Preview.cshtml" />
     <Content Include="Views\Login\RegisterCompany.cshtml" />
+    <Content Include="Views\Candidates\FavoriteList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

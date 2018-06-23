@@ -16,5 +16,10 @@ namespace Licenta.Controllers
         {
                  return View(Candidate.GetCandidates());
         }
+
+        public ActionResult FavoriteList()
+        {
+            return View(Candidate.GetCandidates());
+        }
     }
 }
