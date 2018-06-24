@@ -1,4 +1,5 @@
-﻿using LicentaBUS.BusinessLayer;
+﻿using Licenta.Models;
+using LicentaBUS.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace Licenta.Controllers
         // GET:User
         public ActionResult UserProfile()
         {
-            return View();
+            var usr = new CandidateProfile();
+            usr.First_name = "Sabina";
+           // usr.CandidateExperiences = GetCandidateExperiences();
+            return View(usr);
         }
 
         [HttpGet]
