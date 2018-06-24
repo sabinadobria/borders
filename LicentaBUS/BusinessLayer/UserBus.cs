@@ -51,6 +51,7 @@ namespace LicentaBUS.BusinessLayer
                 }
             }
         }
+
         public int userTypeId(string _username, string _password)
         {
             using (var cn = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=noBorders;Integrated Security=True"))

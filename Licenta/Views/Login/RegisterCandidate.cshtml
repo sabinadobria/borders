@@ -27,7 +27,7 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Register an Account</div>
             <div class="card-body">
-                <div class="card-body">
+                
 
                     @using (Html.BeginForm())
                     {
@@ -44,6 +44,7 @@
                                     @Html.TextBoxFor(candidate => candidate.last_name, new { @class = "form-control", @placeholder = "Enter last name" })
                                     @Html.ValidationMessageFor(candidate => candidate.last_name, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-row">
@@ -69,15 +70,14 @@
                                 </div>
 
                             </div>
-                        </div>
                         <button type="submit" value="Submit" class="btn btn-primary btn-block">Register</button>
 
                     }
 
-                </div>
+               
                 <div class="text-center">
-                    <a class="d-block small" href="/Login/registercompany">Register as a Recruiter</a>
-                    <a class="d-block small mt-3" href="/Login/Login">Login Page</a>
+                    <a class="d-block small mt-3" href="/Login/registercompany">Register as a Recruiter</a>
+                    <a class="d-block small" href="/Login/Login">Login Page</a>
                 </div>
             </div>
         </div>
