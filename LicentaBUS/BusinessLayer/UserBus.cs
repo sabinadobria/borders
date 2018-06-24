@@ -65,12 +65,10 @@ namespace LicentaBUS.BusinessLayer
                     .Add(new SqlParameter("@p", SqlDbType.NVarChar))
                     .Value = _password;
 
-                //.Value = Helpers.SHA1.Encode(_password);
                 cn.Open();
                 var reader = cmd.ExecuteReader();
 
                 var  _utype = 0;
-                //SqlDataReader rdr = cmd.ExecuteReader();
                 if (reader.Read())
                 {
                     _utype = (int)reader["usertypeId"];
