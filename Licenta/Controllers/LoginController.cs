@@ -40,7 +40,6 @@ namespace Licenta.Controllers
                         return RedirectToAction("CandidatesList", "Candidates");
                     }
 
-                 //   return RedirectToAction("candidateslist", "candidates");
                 }
                 else
                 {
