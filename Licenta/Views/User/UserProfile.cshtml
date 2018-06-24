@@ -136,29 +136,31 @@
                                     @using (Html.BeginForm())
                                     {
                                         @Html.ValidationSummary(true, "", new { @style = "color:red" });
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                    <div class="row">
 
-                                                    @Html.LabelFor(user => user.First_name)
-                                                    @Html.TextBoxFor(user => user.First_name, new { @class = "form-control", @placeholder = "Enter first name" })
-                                                    @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Last_name)
-                                                    @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control", @placeholder = "Enter last name" })
-                                                    @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
-                                                </div>
+                                     
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                @Html.LabelFor(user => user.First_name)
+                                                @Html.TextBoxFor(user => user.First_name, new { @class = "form-control", @placeholder = "Enter first name" })
+                                                @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(user => user.Last_name)
+                                                @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control", @placeholder = "Enter last name" })
+                                                @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Email)
                                                     @Html.TextBoxFor(user => user.Email, new { @class = "form-control", @placeholder = "Enter email" })
-                                                    @Html.ValidationMessageFor(user => user.Email, "", new { @class = "text-danger" })
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -204,21 +206,12 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.AboutMe)
-                                                    @Html.TextAreaFor(user => user.AboutMe, new { @class = "form-control", @rows = "5" })
+                                                    @Html.TextAreaFor(user => user.AboutMe  , new { @class = "form-control", @rows = "5" })
                                                     @Html.ValidationMessageFor(user => user.AboutMe, "", new { @class = "text-danger" })
-
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-
-                                    }
-
-
-
-                                  
-
-                                   
-
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -392,10 +385,13 @@ But that's the difference in our opinions.</textarea>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill">Update Profile</button>
+                                        @Html.ActionLink("Update", "UpdateCandidate", new { id = })
+                                        <button type="submit" href="/User/UpdateCandidate" class="btn btn-info btn-fill">Update Profile</button>
                                         <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
 
                                     </div>
+
+                                    }
                                 </form>
                             </div>
                         </div>

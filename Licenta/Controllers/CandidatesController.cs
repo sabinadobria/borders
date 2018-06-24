@@ -15,7 +15,7 @@ namespace Licenta.Controllers
        
         public ActionResult CandidatesList()
         {
-                 return View(Candidate.GetCandidates());
+          return View(Candidate.GetCandidates());
         }
 
         public ActionResult FavoriteList()

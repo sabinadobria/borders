@@ -1,4 +1,5 @@
-﻿using Licenta.Models;
+﻿using Licenta.DataLayer;
+using Licenta.Models;
 using LicentaBUS.BusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,35 @@ namespace Licenta.Controllers
     public class UserController : Controller
     {
         // GET:User
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(UserBus userBus, UserModel user)
         {
-            var usr = new CandidateProfile();
-            usr.First_name = "Sabina";
-           // usr.CandidateExperiences = GetCandidateExperiences();
-            return View(usr);
+            CandidateProfileDL candDl = new CandidateProfileDL();
+
+            // int candIDD = candDL.getCandidateId(user.email);
+            //int candId = Convert.ToInt32(TempData["ID"]);
+
+            int canddidateId = Convert.ToInt32(TempData["ID"]);
+            return View(candDl.getCandidateProfileById(canddidateId));
         }
+        [HttpPost]
+        public ActionResult UpdateCandidate(int id, CandidateProfile candidateProfile)
+        {
+            try
+            {
+                CandidateProfileDL candProfileDL = new CandidateProfileDL();
+
+                if (candProfileDL.updateCandidateProfile(candidateProfile))
+                {
+                    return RedirectToAction("UserProfile", "User");
+                }
+            }
+            catch
+            {
+                RedirectToAction("UserProfile", "User");
+            }
+           return RedirectToAction("UserProfile", "User");
+        }
+
 
         [HttpGet]
         public ActionResult Preview(int id)
@@ -31,11 +54,11 @@ namespace Licenta.Controllers
             return View(Candidate.GetCandidateById(id));
         }
 
-        //[HttpPost]
+       //[HttpPost]
         //public ActionResult Edit(Candidate candidate)
         //{
         //    var dataContext = new PetaPoco.Database("sqlserverce");
-        //    dataContext.Update("Candidate", "id_candidate", candidate);
+          // dataContext.Update("Candidate", "id_candidate", candidate);
         //    return RedirectToAction("TableList","Table");
         //}
 

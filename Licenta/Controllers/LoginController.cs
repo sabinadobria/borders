@@ -19,6 +19,7 @@ namespace Licenta.Controllers
         {
 
             return View();
+
         }
 
         [HttpPost]
@@ -29,11 +30,15 @@ namespace Licenta.Controllers
             {
                 if (userBus.IsValid(user.email, user.password,user.userType))
                 {
-                    //FormsAuthentication.SetAuthCookie(user.email, );
+                    CandidateProfileDL candDl = new CandidateProfileDL();
+                    var id = candDl.getCandidateId(user.email);
+                    TempData["ID"] = id;
                     var ut = userBus.userTypeId(user.email, user.password);
                     if (ut == 1)
                     {
+                      
                         return RedirectToAction("UserProfile", "User");
+
                     }
                     else if (ut == 2)
                     {

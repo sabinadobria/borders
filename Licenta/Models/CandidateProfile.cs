@@ -19,6 +19,7 @@ namespace Licenta.Models
         public string AboutMe { get; set; }
 
         public IList<CandidateExperience> CandidateExperiences { get; set; }
+        public CandidateExperience CandidateExperience { get; set; } 
         public IList<CandidateStudies> CandidateStudies { get; set; }
         public IList<CandidateTechnologies> CandidateTechnologies { get; set; }
         public IList<CandidateLanguages> CandidateLanguages { get; set; }
