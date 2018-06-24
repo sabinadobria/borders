@@ -152,6 +152,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CandidateExperience.cs" />
+    <Compile Include="Models\CandidateLanguages.cs" />
+    <Compile Include="Models\CandidateProfile.cs" />
+    <Compile Include="Models\CandidateStudies.cs" />
+    <Compile Include="Models\CandidateTechnologies.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\CandidateRegister.cs" />
     <Compile Include="Models\CompanyRegister.cs" />
