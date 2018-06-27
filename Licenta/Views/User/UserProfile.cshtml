@@ -42,9 +42,9 @@
         <div class="sidebar" data-background-color="black" data-active-color="danger">
 
             <!--
-            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-            Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-        -->
+                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+            -->
 
             <div class="sidebar-wrapper">
                 <div class="logo">
@@ -136,37 +136,37 @@
                                     @using (Html.BeginForm())
                                     {
                                         @Html.ValidationSummary(true, "", new { @style = "color:red" });
-                                    <div class="row">
+                                        <div class="row">
 
-                                     
-                                        <div class="col-md-6">
-                                            <div class="form-group">
 
-                                                @Html.LabelFor(user => user.First_name)
-                                                @Html.TextBoxFor(user => user.First_name, new { @class = "form-control", @placeholder = "Enter first name" })
-                                                @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    @Html.LabelFor(user => user.First_name)
+                                                    @Html.TextBoxFor(user => user.First_name, new { @class = "form-control border-input", @placeholder = "Enter first name", @disabled = true })
+                                                    @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(user => user.Last_name)
+                                                    @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control border-input", @placeholder = "Enter last name", @disabled = true })
+                                                    @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(user => user.Last_name)
-                                                @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control", @placeholder = "Enter last name" })
-                                                @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Email)
-                                                    @Html.TextBoxFor(user => user.Email, new { @class = "form-control", @placeholder = "Enter email" })
-                                                   
+                                                    @Html.TextBoxFor(user => user.Email, new { @class = "form-control border-input", @placeholder = "Enter email", @disabled = true })
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Phone)
-                                                    @Html.TextBoxFor(user => user.Phone, new { @class = "form-control", @placeholder = "Enter phone" })
+                                                    @Html.TextBoxFor(user => user.Phone, new { @class = "form-control border-input", @placeholder = "Enter phone", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.Phone, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -176,7 +176,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Address)
-                                                    @Html.TextBoxFor(user => user.Address, new { @class = "form-control", @placeholder = "Enter address" })
+                                                    @Html.TextBoxFor(user => user.Address, new { @class = "form-control border-input", @placeholder = "Enter address", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.Address, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -186,14 +186,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.City)
-                                                    @Html.TextBoxFor(user => user.City, new { @class = "form-control", @placeholder = "Enter city" })
+                                                    @Html.TextBoxFor(user => user.City, new { @class = "form-control border-input", @placeholder = "Enter city", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.City, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Country)
-                                                    @Html.TextBoxFor(user => user.Country, new { @class = "form-control", @placeholder = "Enter country" })
+                                                    @Html.TextBoxFor(user => user.Country, new { @class = "form-control border-input", @placeholder = "Enter country", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.Country, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -206,190 +206,186 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.AboutMe)
-                                                    @Html.TextAreaFor(user => user.AboutMe  , new { @class = "form-control", @rows = "5" })
+                                                    @Html.TextAreaFor(user => user.AboutMe, new { @class = "form-control border-input", @rows = "5", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.AboutMe, "", new { @class = "text-danger" })
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control border-input" disabled placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <br />
+                                        <br />
+                                        <h4 class="title">Experience</h4>
+                                        <br />
 
-                                    <br />
-                                    <br />
-                                    <h4 class="title">Experience</h4>
-                                    <br />
-                                    <div class="row" style="margin-right:1px;">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Company</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Totalsoft" value="">
+                                        for (int i = 0; i < Model.CandidateExperience.Count(); i++)
+                                        {
+                                        <div id="divExperience">
+                                            <div class="row" style="margin-right:1px;">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateExperience[i].company_name)
+                                                        @Html.TextBoxFor(user => user.CandidateExperience[i].company_name, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateExperience[i].from_date)
+                                                        @Html.TextBoxFor(user => user.CandidateExperience[i].from_date, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateExperience[i].to_date)
+                                                        @Html.TextBoxFor(user => user.CandidateExperience[i].to_date, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateExperience[i].position)
+                                                        @Html.TextBoxFor(user => user.CandidateExperience[i].position, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-left:1px;">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].description)
+                                                            @Html.TextAreaFor(user => user.CandidateExperience[i].description, new { @class = "form-control border-input", @rows = "5", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Java developer" value="">
-                                            </div>
+                                            <br />
+                                            <br />
+                                        }
+                                        <div class="form-group">
+                                            <label>Add more</label>
+                                            <a href="#" id="addExperience">
+                                                <i class="ti-plus"></i>
+                                            </a>
                                         </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>From date</label>
-                                                <input type="date" class="form-control border-input" disabled value="">
-                                            </div>
-                                        </div>
+                                        <div class="clearfix"></div>
+                                        <br />
+                                        <br />
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>To date</label>
-                                                <input type="date" class="form-control border-input" disabled value="">
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-left:1px;">
-                                            <div class="col-md-12">
+
+
+                                        <h4 class="title">Studies</h4>
+                                        <br />
+                                        <div class="row" style="margin-right:1px;">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Activity description</label>
-                                                    <textarea rows="5" class="form-control border-input" disabled placeholder="Describe your projects,task ,team etc" value="Mike">
+                                                    <label>University</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Ex: ASE Bucuresti" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Section</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Ex: Cibernetica " value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Diploma</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Ex: Bachelor's degree " value="">
+                                                </div>
+                                            </div>
 
-                                            </textarea>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Year</label>
+                                                    <select class="form-control border-input" disabled id="citydrp">
+                                                        <option>--Select--</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>Finished</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group" style="margin-left:15px;">
-                                            <label>Add more</label>
-                                            <a href="#">
-                                                <i class="ti-plus"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <br />
-                                    <br />
 
+                                        <div class="row" style="margin-right:9px;">
 
-
-                                    <h4 class="title">Studies</h4>
-                                    <br />
-                                    <div class="row" style="margin-right:1px;">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>University</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: ASE Bucuresti" value="">
+                                            <div class="form-group" style="margin-left:15px;">
+                                                <label>Add more</label>
+                                                <a href="#">
+                                                    <i class="ti-plus"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Section</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Cibernetica " value="">
+                                        <div class="clearfix"></div>
+
+                                        <br />
+                                        <br />
+                                        <h4 class="title">Skills</h4>
+                                        <br />
+                                        <div class="row" style="margin-right:1px;">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tech</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Ex: JAVA" value="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Level</label>
+                                                    <select class="form-control border-input" disabled id="citydrp">
+                                                        <option>--Select--</option>
+                                                        <option>Begginer</option>
+                                                        <option>Intermediate</option>
+                                                        <option>Advanced</option>
+                                                        <option>Sensei</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row" style="margin-right:9px;">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Language</label>
+                                                    <input type="text" class="form-control border-input" disabled placeholder="Ex: English" value="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Level</label>
+                                                    <select class="form-control border-input" disabled id="citydrp">
+                                                        <option>--Select--</option>
+                                                        <option>Begginer</option>
+                                                        <option>Intermediate</option>
+                                                        <option>Advanced</option>
+                                                        <option>Sensei</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="margin-left:15px;">
+                                                <label>Add more</label>
+                                                <a href="#">
+                                                    <i class="ti-plus"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Diploma</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: Bachelor's degree " value="">
-                                            </div>
+                                        <div class="clearfix"></div>
+                                        <div class="text-center">
+                                            @*@Html.ActionLink("Update", "UpdateCandidate", new { id = })*@
+                                            <button type="submit" href="/User/UpdateCandidate" class="btn btn-info btn-fill">Update Profile</button>
+                                            <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
+
                                         </div>
-
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Year</label>
-                                                <select class="form-control border-input" disabled id="citydrp">
-                                                    <option>--Select--</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>Finished</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row" style="margin-right:9px;">
-
-                                        <div class="form-group" style="margin-left:15px;">
-                                            <label>Add more</label>
-                                            <a href="#">
-                                                <i class="ti-plus"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-
-                                    <br />
-                                    <br />
-                                    <h4 class="title">Skills</h4>
-                                    <br />
-                                    <div class="row" style="margin-right:1px;">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tech</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: JAVA" value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Level</label>
-                                                <select class="form-control border-input" disabled id="citydrp">
-                                                    <option>--Select--</option>
-                                                    <option>Begginer</option>
-                                                    <option>Intermediate</option>
-                                                    <option>Advanced</option>
-                                                    <option>Sensei</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row" style="margin-right:9px;">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Language</label>
-                                                <input type="text" class="form-control border-input" disabled placeholder="Ex: English" value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Level</label>
-                                                <select class="form-control border-input" disabled id="citydrp">
-                                                    <option>--Select--</option>
-                                                    <option>Begginer</option>
-                                                    <option>Intermediate</option>
-                                                    <option>Advanced</option>
-                                                    <option>Sensei</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" style="margin-left:15px;">
-                                            <label>Add more</label>
-                                            <a href="#">
-                                                <i class="ti-plus"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="text-center">
-                                        @Html.ActionLink("Update", "UpdateCandidate", new { id = })
-                                        <button type="submit" href="/User/UpdateCandidate" class="btn btn-info btn-fill">Update Profile</button>
-                                        <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
-
-                                    </div>
 
                                     }
                                 </form>
@@ -402,33 +398,33 @@ But that's the difference in our opinions.</textarea>
 
 
         @*<footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
 
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright pull-right">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                            <li>
+                                <a href="http://www.creative-tim.com">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.creative-tim.com/license">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright pull-right">
+                        &copy;
+                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                    </div>
                 </div>
-            </div>
-        </footer>*@
+            </footer>*@
 
     </div>
 </body>
@@ -460,5 +456,11 @@ But that's the difference in our opinions.</textarea>
         $("#target select, textarea").prop("disabled", false);
     }
 </script>
-
+<script>
+    $(document).ready(function () {
+        $("#addExperience").click(function () {
+            $("#divExperience").append('<h4>Test appeneddddddddddddddddd</h4>');
+        });
+    });
+</script>
 

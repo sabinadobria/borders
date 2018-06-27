@@ -12,15 +12,28 @@ namespace Licenta.Controllers
     public class UserController : Controller
     {
         // GET:User
-        public ActionResult UserProfile(UserBus userBus, UserModel user)
+        public ActionResult UserProfile()
         {
-            CandidateProfileDL candDl = new CandidateProfileDL();
+            NoBordersDB db = new NoBordersDB();
+            int candidateId = Convert.ToInt32(TempData["ID"]);
 
-            // int candIDD = candDL.getCandidateId(user.email);
-            //int candId = Convert.ToInt32(TempData["ID"]);
+            try
+            {
+                //get contact data details for logged in user
+                var candidate = db.CandidateProfiles.Single(cand => cand.Id_candidate == candidateId);
 
-            int canddidateId = Convert.ToInt32(TempData["ID"]);
-            return View(candDl.getCandidateProfileById(canddidateId));
+                //get the list of all the experiences for the logged in user
+                candidate.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == candidateId).ToList();
+                return View(candidate);
+            }
+             
+            catch
+            {
+               return RedirectToAction("Login", "Login");
+            }
+           
+          
+
         }
         [HttpPost]
         public ActionResult UpdateCandidate(int id, CandidateProfile candidateProfile)

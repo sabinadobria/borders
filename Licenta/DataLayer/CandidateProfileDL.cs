@@ -12,49 +12,49 @@ namespace Licenta.DataLayer
     public class CandidateProfileDL
     {
 
-        private string connString = ConfigurationManager.ConnectionStrings["NoBordersConnection"].ConnectionString;
-        string query = "spLoadCandidateInfo";
+        private string connString = ConfigurationManager.ConnectionStrings["NoBordersDB"].ConnectionString;
+        //string query = "spLoadCandidateInfo";
 
-        public CandidateProfile getCandidateProfileById (int candidate_id)
-        {
-            CandidateProfile candidate = null;
+        //public CandidateProfile getCandidateProfileById (int candidate_id)
+        //{
+        //    CandidateProfile candidate = null;
           
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connString))
+        //        {
+        //            SqlCommand cmd = new SqlCommand(query, conn);
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id", candidate_id);
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmd;
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
+        //            cmd.Parameters.AddWithValue("@id", candidate_id);
+        //            SqlDataAdapter da = new SqlDataAdapter();
+        //            da.SelectCommand = cmd;
+        //            DataSet ds = new DataSet();
+        //            da.Fill(ds);
 
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        candidate = new CandidateProfile();
-                        candidate.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id_candidate"].ToString());
-                        candidate.Last_name = ds.Tables[0].Rows[i]["last_name"].ToString();
-                        candidate.First_name = ds.Tables[0].Rows[i]["first_name"].ToString();
-                        candidate.Email = ds.Tables[0].Rows[i]["email"].ToString();
-                        candidate.Phone = Convert.ToInt32(ds.Tables[0].Rows[i]["phone"].ToString());
-                        candidate.Address = ds.Tables[0].Rows[i]["address"].ToString();
-                        candidate.City = ds.Tables[0].Rows[i]["city"].ToString();
-                        candidate.Country = ds.Tables[0].Rows[i]["country"].ToString();
-                        candidate.AboutMe = ds.Tables[0].Rows[i]["aboutme"].ToString();
+        //            //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //            //{
+        //                candidate = new CandidateProfile();
+        //                candidate.Id_candidate = Convert.ToInt32(ds.Tables[0].Rows[0]["id_candidate"].ToString());
+        //                candidate.Last_name = ds.Tables[0].Rows[0]["last_name"].ToString();
+        //                candidate.First_name = ds.Tables[0].Rows[0]["first_name"].ToString();
+        //                candidate.Email = ds.Tables[0].Rows[0]["email"].ToString();
+        //                candidate.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+        //                candidate.Address = ds.Tables[0].Rows[0]["address"].ToString();
+        //                candidate.City = ds.Tables[0].Rows[0]["city"].ToString();
+        //                candidate.Country = ds.Tables[0].Rows[0]["country"].ToString();
+        //                candidate.AboutMe = ds.Tables[0].Rows[0]["aboutme"].ToString();
+                        
+        //            //}
 
-                    }
-
-                    return candidate;
-                }
-            }
-            catch
-            {
-                return candidate;
-            }
-        }
+        //            return candidate;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return candidate;
+        //    }
+        //}
         public int getCandidateId(string _email)
         {
            
@@ -98,7 +98,7 @@ namespace Licenta.DataLayer
             {
                 SqlCommand cmd = new SqlCommand(query1, conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id_candidate", candidate.Id);
+                cmd.Parameters.AddWithValue("@id_candidate", candidate.Id_candidate);
                 cmd.Parameters.AddWithValue("@email", candidate.Email);
                 cmd.Parameters.AddWithValue("@firstname", candidate.First_name);
                 cmd.Parameters.AddWithValue("@lastname", candidate.Last_name);
