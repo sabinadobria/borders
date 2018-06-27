@@ -459,7 +459,8 @@
 <script>
     $(document).ready(function () {
         $("#addExperience").click(function () {
-            $("#divExperience").append('<h4>Test appeneddddddddddddddddd</h4>');
+            $("#divExperience").append($("#divExperience").clone(true));
+
         });
     });
 </script>
