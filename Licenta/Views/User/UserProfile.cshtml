@@ -137,7 +137,7 @@
                                     {
                                         @Html.ValidationSummary(true, "", new { @style = "color:red" });
                                         <div class="row">
-
+                                             @Html.HiddenFor(model => model.Id_candidate)
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -381,8 +381,8 @@
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="text-center">
-                                            @*@Html.ActionLink("Update", "UpdateCandidate", new { id = })*@
-                                            <button type="submit" href="/User/UpdateCandidate" class="btn btn-info btn-fill">Update Profile</button>
+                                            @Html.ActionLink("Update", "UserProfile")
+                                            <button type="submit" class="btn btn-info btn-fill">Update Profile</button>
                                             <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
 
                                         </div>

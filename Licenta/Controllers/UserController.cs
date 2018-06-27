@@ -35,23 +35,19 @@ namespace Licenta.Controllers
           
 
         }
-        [HttpPost]
-        public ActionResult UpdateCandidate(int id, CandidateProfile candidateProfile)
-        {
-            try
-            {
-                CandidateProfileDL candProfileDL = new CandidateProfileDL();
 
-                if (candProfileDL.updateCandidateProfile(candidateProfile))
-                {
-                    return RedirectToAction("UserProfile", "User");
-                }
-            }
-            catch
+        [HttpPost]
+       // [ActionName("UserProfile")]
+        public ActionResult UserProfile(CandidateProfile candidateProfile)
+        {
+            if (ModelState.IsValid)
             {
-                RedirectToAction("UserProfile", "User");
+                NoBordersDB db = new NoBordersDB();
+                db.Entry(candidateProfile).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("UserProfile");
             }
-           return RedirectToAction("UserProfile", "User");
+            return View(candidateProfile);
         }
 
 
