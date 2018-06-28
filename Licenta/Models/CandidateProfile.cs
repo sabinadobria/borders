@@ -15,13 +15,19 @@ namespace Licenta.Models
         [Key]
         public int Id_candidate { set; get; }
 
+        [Display(Name ="Last Name")]
         public string Last_name { get; set; }
+
+        [Display(Name = "First Name")]
         public string First_name { get; set; }
+
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+
+        [Display(Name = "About Me")]
         public string AboutMe { get; set; }
 
         

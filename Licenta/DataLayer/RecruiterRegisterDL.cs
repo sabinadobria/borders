@@ -10,7 +10,7 @@ namespace Licenta.DataLayer
 {
     public class RecruiterRegisterDL
     {
-        private string connString = ConfigurationManager.ConnectionStrings["NoBordersConnection"].ConnectionString;
+        private string connString = ConfigurationManager.ConnectionStrings["NoBordersDB"].ConnectionString;
         private string query = "spCompanyRegister";
 
         public bool registerRecruiter(CompanyRegister company)

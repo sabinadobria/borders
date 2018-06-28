@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CandidateProfilesController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -371,6 +372,11 @@
     <Content Include="Views\User\Preview.cshtml" />
     <Content Include="Views\Login\RegisterCompany.cshtml" />
     <Content Include="Views\Candidates\FavoriteList.cshtml" />
+    <Content Include="Views\CandidateProfiles\Create.cshtml" />
+    <Content Include="Views\CandidateProfiles\Delete.cshtml" />
+    <Content Include="Views\CandidateProfiles\Details.cshtml" />
+    <Content Include="Views\CandidateProfiles\Edit.cshtml" />
+    <Content Include="Views\CandidateProfiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

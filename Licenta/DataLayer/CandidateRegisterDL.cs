@@ -10,9 +10,9 @@ namespace Licenta.DataLayer
     public class CandidateRegisterDL
     {
 
-        private string connString = ConfigurationManager.ConnectionStrings["NoBordersConnection"].ConnectionString;
+        private string connString = ConfigurationManager.ConnectionStrings["NoBordersDB"].ConnectionString;
         private string query = "spCandidateRegister";
-
+        
         public bool registerCandidate(CandidateRegister candidate)
         {
             using (SqlConnection conn = new SqlConnection(connString))
