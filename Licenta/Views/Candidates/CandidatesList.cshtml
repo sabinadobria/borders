@@ -116,8 +116,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                               
-                               
+
+
                                 <div class="content table-responsive table-full-width">
                                     <table id="candidateList" class="table table-striped">
                                         <thead>
@@ -132,21 +132,21 @@
                                         <tbody>
 
                                             @foreach (var candidate in Model)
-                                    {
-                                        <tr>
-                                            <td>@candidate.First_name</td>
-                                            <td>@candidate.Last_name</td>
-                                            <td>Romania</td>
-                                            <td>Java</td>
-                                            <td>Junior</td>
-                                            <td>Not interested</td>
-                                            <td>
-                                                @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.Id_candidate }, null) |
-                                                @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null) 
-                                               
-                                            </td>
-                                        </tr>
-                            }
+                                            {
+                                                <tr>
+                                                    <td>@candidate.First_name</td>
+                                                    <td>@candidate.Last_name</td>
+                                                    <td>Romania</td>
+                                                    <td>Java</td>
+                                                    <td>Junior</td>
+                                                    <td>Not interested</td>
+                                                    <td>
+                                                        @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.Id_candidate }, null) |
+                                                        @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null)
+
+                                                    </td>
+                                                </tr>
+                                            }
 
                                         </tbody>
                                     </table>
@@ -156,16 +156,21 @@
                         </div>
 
 
-                        
+
 
 
                     </div>
                 </div>
             </div>
 
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+            </button>
+            <!-- Modal -->
+
             <footer class="footer">
                 <div class="container-fluid">
-                          <div class="copyright pull-right">
+                    <div class="copyright pull-right">
                         &copy;
                         <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">NoBorders</a>
                     </div>
@@ -178,8 +183,27 @@
 
 
 </body>
-
 </html>
+<div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--   Core JS Files   -->
 <script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
