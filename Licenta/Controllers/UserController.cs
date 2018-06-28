@@ -11,7 +11,7 @@ namespace Licenta.Controllers
 {
     public class UserController : Controller
     {
-        // GET:User
+        // GET:UserDetails
         public ActionResult UserProfile()
         {
             NoBordersDB db = new NoBordersDB();
@@ -31,20 +31,33 @@ namespace Licenta.Controllers
             {
                return RedirectToAction("Login", "Login");
             }
-           
-          
 
         }
 
-        [HttpPost]
-       // [ActionName("UserProfile")]
+        //update candidate informations 
+
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UserProfile(CandidateProfile candidateProfile)
         {
+            NoBordersDB db = new NoBordersDB();
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
-                NoBordersDB db = new NoBordersDB();
+                //update candidate contact data
                 db.Entry(candidateProfile).State = System.Data.Entity.EntityState.Modified;
+                Session["user_name"] = candidateProfile.First_name + " " + candidateProfile.Last_name;
+
+
+                //loop through every candidate experience and update in database
+                for (int i = 0; i<candidateProfile.CandidateExperience.Count(); i++)
+                {
+                    db.Entry(candidateProfile.CandidateExperience[i]).State = System.Data.Entity.EntityState.Modified;
+                }
+
+                //perform the update in all the tables 
                 db.SaveChanges();
+
+
                 return RedirectToAction("UserProfile");
             }
             return View(candidateProfile);

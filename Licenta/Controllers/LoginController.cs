@@ -93,8 +93,12 @@ namespace Licenta.Controllers
                     //calling stored procedure
                     CandidateRegisterDL candDL = new CandidateRegisterDL();
                     candDL.registerCandidate(candidate);
+                    NoBordersDB db = new NoBordersDB();
 
+                    var user = db.CandidateProfiles.Single(x => x.Email == candidate.email);
 
+                    Session["user_id"] = user.Id_candidate;
+                    Session["user_name"] = user.First_name + " " + user.Last_name;
                     return RedirectToAction("userProfile", "user");
 
                 }
