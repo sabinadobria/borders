@@ -1,7 +1,7 @@
 ﻿@model Licenta.Models.CandidateProfile
 @{
     Layout = null;
-    if (Session["user_id"] == null)
+    if (Session["candidate_id"] == null)
     {
         Response.Redirect("~/Login/Login");
     }

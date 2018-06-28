@@ -29,26 +29,24 @@ namespace Licenta.Controllers
             if (ModelState.IsValid)
             {
                 if (userBus.IsValid(user.email, user.password,user.userType))
-                {
+                   {
                     CandidateProfileDL candDl = new CandidateProfileDL();
                     NoBordersDB db = new NoBordersDB();
-
-
-                    //storing logged -in user id in session variable
-                    var id = candDl.getCandidateId(user.email);
-                    Session["user_id"] = id;
                     
-                    //getting logged in user details
-                    var dummyModel = db.CandidateProfiles.Single(cand => cand.Id_candidate == id);
-
-                    //getting the full name of the logged in user to be displayed on the UserProfile page
-                    Session["user_name"] = dummyModel.First_name + " " + dummyModel.Last_name;
-
-
                     //checking the user type ( candidate/recruiter)
                     var ut = userBus.userTypeId(user.email, user.password);
                     if (ut == 1)
                     {
+                        //storing logged -in user id in session variable
+                        var id = candDl.getCandidateId(user.email);
+                        Session["candidate_id"] = id;
+
+
+                        //getting logged in user details
+                        var dummyModel = db.CandidateProfiles.Single(cand => cand.Id_candidate == id);
+
+                        //getting the full name of the logged in user to be displayed on the UserProfile page
+                        Session["user_name"] = dummyModel.First_name + " " + dummyModel.Last_name;
 
                         Membership.ValidateUser(user.email, user.password);
                         return RedirectToAction("UserProfile", "User");
@@ -56,6 +54,7 @@ namespace Licenta.Controllers
                     }
                     else if (ut == 2)
                     {
+                        Session["recruiter_email"] = user.email;
                         return RedirectToAction("CandidatesList", "Candidates");
                     }
 
@@ -97,7 +96,7 @@ namespace Licenta.Controllers
 
                     var user = db.CandidateProfiles.Single(x => x.Email == candidate.email);
 
-                    Session["user_id"] = user.Id_candidate;
+                    Session["candidate_id"] = user.Id_candidate;
                     Session["user_name"] = user.First_name + " " + user.Last_name;
                     return RedirectToAction("userProfile", "user");
 

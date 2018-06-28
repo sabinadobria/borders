@@ -4,6 +4,7 @@ using NoBordersConnectionDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,15 +13,27 @@ namespace Licenta.Controllers
     public class CandidatesController : Controller
     {
         // GET: Table
-       
+        NoBordersDB db = new NoBordersDB();
         public ActionResult CandidatesList()
         {
-          return View(Candidate.GetCandidates());
+            
+            return View(db.CandidateProfiles.ToList());
         }
 
-        public ActionResult FavoriteList()
+        public ActionResult Preview(int? id)
         {
-            return View(Candidate.GetCandidates());
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CandidateProfile candidateProfile = db.CandidateProfiles.Find(id);
+
+            if (candidateProfile == null)
+            {
+                return HttpNotFound();
+            }
+            return View(candidateProfile);
         }
+      
     }
 }

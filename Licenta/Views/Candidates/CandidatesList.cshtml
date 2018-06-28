@@ -1,6 +1,11 @@
-﻿@model  IEnumerable <NoBordersConnectionDb.CANDIDATE>
+﻿@model  IEnumerable <Licenta.Models.CandidateProfile>
 @{
     Layout = null;
+
+    if (Session["recruiter_email"] == null)
+    {
+        Response.Redirect("~/Login/Login");
+    }
 }
 
 
@@ -120,7 +125,7 @@
                                         <th>Surname</th>
                                         <th>Country</th>
                                         <th>Skills</th>
-                                        <th>Experience</th>
+                                        <th>Experienta</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                         </thead>
@@ -129,15 +134,15 @@
                                             @foreach (var candidate in Model)
                                     {
                                         <tr>
-                                            <td>@candidate.first_name</td>
-                                            <td>@candidate.last_name</td>
+                                            <td>@candidate.First_name</td>
+                                            <td>@candidate.Last_name</td>
                                             <td>Romania</td>
-                                            <td>@candidate.skills</td>
+                                            <td>Java</td>
                                             <td>Junior</td>
-                                            <td>Interested</td>
+                                            <td>Not interested</td>
                                             <td>
-                                                @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.id_candidate }, null) |
-                                                @Html.ActionLink("Preview", "Preview", "User", new { id = candidate.id_candidate }, null) 
+                                                @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.Id_candidate }, null) |
+                                                @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null) 
                                                
                                             </td>
                                         </tr>

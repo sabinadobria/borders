@@ -16,7 +16,7 @@ namespace Licenta.Controllers
         public ActionResult UserProfile()
         {
             NoBordersDB db = new NoBordersDB();
-            int candidateId = Convert.ToInt32(Session["user_id"]);
+            int candidateId = Convert.ToInt32(Session["candidate_id"]);
 
             try
             {
