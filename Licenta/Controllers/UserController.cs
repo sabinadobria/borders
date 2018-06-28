@@ -15,7 +15,7 @@ namespace Licenta.Controllers
         public ActionResult UserProfile()
         {
             NoBordersDB db = new NoBordersDB();
-            int candidateId = Convert.ToInt32(TempData["ID"]);
+            int candidateId = Convert.ToInt32(Session["user_id"]);
 
             try
             {
@@ -63,29 +63,5 @@ namespace Licenta.Controllers
             return View(Candidate.GetCandidateById(id));
         }
 
-       //[HttpPost]
-        //public ActionResult Edit(Candidate candidate)
-        //{
-        //    var dataContext = new PetaPoco.Database("sqlserverce");
-          // dataContext.Update("Candidate", "id_candidate", candidate);
-        //    return RedirectToAction("TableList","Table");
-        //}
-
-        
-        //public ActionResult Delete(int id)
-        //{
-
-        //    var employee = dataContext.SingleOrDefault<Candidate>("Select * from Employee where employeeId=@0",
-        //                                                     id);
-        //    return View(employee);
-        //}
-
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection formCollection)
-        //{
-        //    var dataContext = new PetaPoco.Database("sqlserverce");
-        //    dataContext.Delete<Employee>(id);
-        //    return RedirectToAction("Index");
-        //}
     }
 }
