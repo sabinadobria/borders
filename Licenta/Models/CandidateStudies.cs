@@ -13,5 +13,6 @@ namespace Licenta.Models
         public DateTime From_date { get; set; }
         public DateTime To_date { get; set; }
         public string Description { get; set; }
+        public string Section { get; set; }
     }
 }
