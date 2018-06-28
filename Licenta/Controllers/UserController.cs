@@ -25,6 +25,13 @@ namespace Licenta.Controllers
 
                 //get the list of all the experiences for the logged in user
                 candidate.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == candidateId).ToList();
+                //get the list of all the studies for the logged user
+                candidate.CandidateStudies = db.CandidateStudies.Where(x => x.id_candidate == candidateId).ToList();
+                //get the list of all the technologies for the logged user
+                candidate.CandidateTechnologies = db.CandidateTechnologies.Where(x => x.id_candidate == candidateId).ToList();
+                //get the list of all the languages for the logged user
+                candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == candidateId).ToList();
+
                 return View(candidate);
             }
              
@@ -54,7 +61,21 @@ namespace Licenta.Controllers
                 {
                     db.Entry(candidateProfile.CandidateExperience[i]).State = System.Data.Entity.EntityState.Modified;
                 }
-
+                //loop through every candidate studies and update in database
+                for (int i = 0; i < candidateProfile.CandidateStudies.Count(); i++)
+                {
+                    db.Entry(candidateProfile.CandidateStudies[i]).State = System.Data.Entity.EntityState.Modified;
+                }
+                //loop through every candidate tech and update in database
+                for (int i = 0; i < candidateProfile.CandidateTechnologies.Count(); i++)
+                {
+                    db.Entry(candidateProfile.CandidateTechnologies[i]).State = System.Data.Entity.EntityState.Modified;
+                }
+                //loop through every candidate languages and update in database
+                for (int i = 0; i < candidateProfile.CandidateLanguages.Count(); i++)
+                {
+                    db.Entry(candidateProfile.CandidateLanguages[i]).State = System.Data.Entity.EntityState.Modified;
+                }
                 //perform the update in all the tables 
                 try
                 {

@@ -1,18 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Licenta.Models
 {
+    [Table("STUDIES")]
     public class CandidateStudies
     {
-        public int Id { get; set; }
-        public string School { get; set; }
-        public string Diploma { get; set; }
-        public DateTime From_date { get; set; }
-        public DateTime To_date { get; set; }
-        public string Description { get; set; }
-        public string Section { get; set; }
+        [Key]
+        public int id_education { get; set; }
+        [Display(Name = "University")]
+        [Required]
+        public string school { get; set; }
+        [Display(Name = "Diploma")]
+        public string diploma { get; set; }
+        [Display(Name = "Starting date")]
+        public DateTime from_date { get; set; }
+        [Display(Name = "End date")]
+        public DateTime to_date { get; set; }
+        [Display(Name = "Section")]
+        public string section { get; set; }
+        public int id_candidate { get; set; }
+       
     }
 }
