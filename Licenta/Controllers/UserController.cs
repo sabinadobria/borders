@@ -3,6 +3,7 @@ using Licenta.Models;
 using LicentaBUS.BusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,14 +50,20 @@ namespace Licenta.Controllers
 
 
                 //loop through every candidate experience and update in database
-                for (int i = 0; i<candidateProfile.CandidateExperience.Count(); i++)
+                for (int i = 0; i < candidateProfile.CandidateExperience.Count(); i++)
                 {
                     db.Entry(candidateProfile.CandidateExperience[i]).State = System.Data.Entity.EntityState.Modified;
                 }
 
                 //perform the update in all the tables 
-                db.SaveChanges();
-
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                   string error =  ex.Message;
+                }
 
                 return RedirectToAction("UserProfile");
             }
