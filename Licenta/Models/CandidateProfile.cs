@@ -30,10 +30,13 @@ namespace Licenta.Models
         [Display(Name = "About Me")]
         public string AboutMe { get; set; }
 
-        
+        public string Country_To_Work { get; set; }
+        public string Interest { get; set; }
+
         public List<CandidateExperience> CandidateExperience { get; set; } 
         public List<CandidateStudies> CandidateStudies { get; set; }
         public List<CandidateTechnologies> CandidateTechnologies { get; set; }
         public List<CandidateLanguages> CandidateLanguages { get; set; }
+
     }
 }

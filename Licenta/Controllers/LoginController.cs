@@ -4,6 +4,7 @@ using LicentaBUS.BusinessLayer;
 using NoBordersConnectionDb;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +26,6 @@ namespace Licenta.Controllers
         [HttpPost]
         public ActionResult Login(UserBus userBus,UserModel user)
         {
-
             if (ModelState.IsValid)
             {
                 if (userBus.IsValid(user.email, user.password,user.userType))

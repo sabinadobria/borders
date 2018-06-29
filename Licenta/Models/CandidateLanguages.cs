@@ -15,7 +15,7 @@ namespace Licenta.Models
         [Display (Name ="Language")]
         public string language { get; set; }
         [Display (Name = "Level")]
-        public string level_experience { get; set; }
+        public string language_level { get; set; }
         public int id_candidate { get; set; }
     }
 }

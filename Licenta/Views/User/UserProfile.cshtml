@@ -41,157 +41,155 @@
 
 </head>
 <body>
+    @using (Html.BeginForm())
+    {
+        <div class="wrapper">
+            <div class="sidebar" data-background-color="black" data-active-color="danger">
 
-    <div class="wrapper">
-        <div class="sidebar" data-background-color="black" data-active-color="danger">
+                <!--
+                    Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+                    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+                -->
 
-            <!--
-                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-            -->
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            No Borders
+                        </a>
+                    </div>
 
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        No Borders
-                    </a>
+                    <ul class="nav">
+                        <li>
+                            <a href="/default/index">
+                                <i class="ti-panel"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="/User/UserProfile">
+                                <i class="ti-user"></i>
+                                <p>My Profile</p>
+                            </a>
+                        </li>
+                        <li style="left:25px;">
+                            <i class="ti-map"></i>
+                            <p>Country I want to work</p>
+                            @Html.DropDownList("Country_To_Work", new List<SelectListItem>
+                                      {
+                                         new SelectListItem { Text = "Romania", Value = "Romania"},
+                                         new SelectListItem { Text = "France", Value = "France"},
+                                         new SelectListItem { Text = "United Kingdom", Value = "United Kingdom"},
+                                         new SelectListItem { Text = "USA", Value = "USA"}
+                                      }, new { @class = "form-control border-input", @style = "width:215px;", @disabled = true, @id = "countryToWork" })
+                        </li>
+                        <li style="left:25px;">
+                            <i class="ti-map"></i>
+                            <p>Opportunities interest</p>
+                            @Html.DropDownList("Interest", new List<SelectListItem>
+                                  {
+                                     new SelectListItem { Text = "Active search", Value = "Active search"},
+                                     new SelectListItem { Text = "I'm searching occasionally", Value = "I'm searching occasionally"},
+                                     new SelectListItem { Text = "Interested, but not searching ", Value = "Interested, but not searching"},
+                                     new SelectListItem { Text = "Not interested", Value = "Not interested"}
+
+                                  }, new { @class = "form-control border-input", @style = "width:215px;", @disabled = true, @id = "Interest" })
+
+
+                        </li>
+
+                    </ul>
                 </div>
 
-                <ul class="nav">
-                    <li>
-                        <a href="/default/index">
-                            <i class="ti-panel"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="/User/UserProfile">
-                            <i class="ti-user"></i>
-                            <p>My Profile</p>
-                        </a>
-                    </li>
-                    <li style="left:25px;">
-                        <i class="ti-map"></i>
-                        <p>Country I want to work</p>
-                        <select class="form-control border-input" id="countrydrp" style="width:215px;">
-                            <option>Select Country</option>
-                            <option>Romania</option>
-                            <option>France</option>
-                            <option>United Kingodm</option>
-                            <option>Italy</option>
-                        </select>
-
-                    </li>
-                    <li style="left:25px;">
-                        <i class="ti-map"></i>
-                        <p>Opportunities interest</p>
-                        <select class="form-control border-input" id="opportunitydrp" style="width:215px;">
-                            <option>Select status</option>
-                            <option>Active search</option>
-                            <option>I'm searching occasionally</option>
-                            <option>Interested, but not searching</option>
-                            <option>Not interested</option>
-                        </select>
-
-
-
-                    </li>
-
-                </ul>
             </div>
-        </div>
+            <div class="main-panel">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar bar1"></span>
+                                <span class="icon-bar bar2"></span>
+                                <span class="icon-bar bar3"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Welcome to your profile : @Session["user_name"]  !</a>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
 
-        <div class="main-panel">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar bar1"></span>
-                            <span class="icon-bar bar2"></span>
-                            <span class="icon-bar bar3"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Welcome to your profile : @Session["user_name"]  !</a>
+                                <li>
+                                    <a href="@Url.Action("Logout","Login")">
+                                        <i class="ti-power-off"></i>
+                                        <p>Logout</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li>
-                                <a href="@Url.Action("Logout","Login")">
-                                    <i class="ti-power-off"></i>
-                                    <p>Logout</p>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
+                </nav>
 
 
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="card">
-                            <div class="content">
-                                @*<form id="target">*@
-                                <h4 class="title">Contact Data</h4>
-                                <br />
-                                <dv id="target">
-                                    @using (Html.BeginForm())
-                                    {
-                                        @Html.ValidationSummary(true, "", new { @style = "color:red" });
-                                    <div class="row">
-                                        @Html.HiddenFor(model => model.Id_candidate)
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card">
+                                <div class="content">
+                                    @*<form id="target">*@
+                                    <h4 class="title">Contact Data</h4>
+                                    <br />
+                                    <dv id="target">
 
-                                        @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
+                                        @Html.ValidationSummary(true, "", new { @style = "color:red" }) 
+                                        <div class="row">
+                                            @Html.HiddenFor(model => model.Id_candidate)
 
-                                        {
-                                            @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
-                                            @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
+                                            @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
 
-                                        }
-                                        @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
+                                            {
+                                                @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
+                                                @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
 
-                                        {
-                                            @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
-                                            @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
+                                            }
+                                            @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
 
-                                        }
+                                            {
+                                                @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
+                                                @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
 
-                                        @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
+                                            }
 
-                                        {
-                                            @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
-                                            @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
+                                            @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
 
-                                        }
-                                        @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
+                                            {
+                                                @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
+                                                @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
 
-                                        {
-                                            @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
-                                            @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
+                                            }
+                                            @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
 
-                                        }
+                                            {
+                                                @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
+                                                @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
+
+                                            }
 
 
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-
-                                                @Html.LabelFor(user => user.First_name)
-                                                @Html.TextBoxFor(user => user.First_name, new { @class = "form-control border-input", @placeholder = "Enter first name", @disabled = true })
-                                                @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(user => user.First_name)
+                                                    @Html.TextBoxFor(user => user.First_name, new { @class = "form-control border-input", @placeholder = "Enter first name", @disabled = true })
+                                                    @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(user => user.Last_name)
+                                                    @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control border-input", @placeholder = "Enter last name", @disabled = true })
+                                                    @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(user => user.Last_name)
-                                                @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control border-input", @placeholder = "Enter last name", @disabled = true })
-                                                @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -220,21 +218,34 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.City)
                                                     @Html.TextBoxFor(user => user.City, new { @class = "form-control border-input", @placeholder = "Enter city", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.City, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Country)
                                                     @Html.TextBoxFor(user => user.Country, new { @class = "form-control border-input", @placeholder = "Enter country", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.Country, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
+                                            @*<div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Country_To_Work)
+                                                        @Html.DropDownList("Country_To_Work", new List<SelectListItem>
+                                                     {
+                                                         new SelectListItem { Text = "Romania", Value = "Romania"},
+                                                         new SelectListItem { Text = "France", Value = "France"},
+                                                         new SelectListItem { Text = "United Kingdom", Value = "United Kingdom"},
+                                                         new SelectListItem { Text = "USA", Value = "USA"}
 
+                                                     }, new { @class = "form-control border-input",  @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.Country, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>*@
                                         </div>
 
 
@@ -255,7 +266,7 @@
                                         <h4 class="title">Experience</h4>
                                         <br />
 
-                                        for (int i = 0; i < Model.CandidateExperience.Count(); i++)
+                                        @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
                                         {
                                             <div id="divExperience">
                                                 <div class="row" style="margin-right:1px;">
@@ -316,7 +327,7 @@
 
                                         <h4 class="title">Studies</h4>
                                         <br />
-                                        for (int i = 0; i < Model.CandidateStudies.Count(); i++)
+                                        @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
                                         {
                                             <div id="divStudies">
                                                 <div class="row" style="margin-right:1px;">
@@ -377,7 +388,7 @@
                                         <br />
                                         <h4 class="title">Skills</h4>
                                         <br />
-                                        for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
+                                        @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
                                         {
                                             <div id="divSkills">
                                                 <div class="row" style="margin-right:1px;">
@@ -389,8 +400,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            @Html.LabelFor(user => user.CandidateTechnologies[i].level_experience)
-                                                            @Html.TextBoxFor(user => user.CandidateTechnologies[i].level_experience, new { @class = "form-control border-input", @disabled = true })
+                                                            @Html.LabelFor(user => user.CandidateTechnologies[i].tech_level)
+                                                            @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_level, new { @class = "form-control border-input", @disabled = true })
                                                         </div>
                                                     </div>
 
@@ -414,7 +425,7 @@
                                         <br />
                                         <h4 class="title">Languages</h4>
                                         <br />
-                                        for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
+                                        @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
                                         {
                                             <div id="divLanguages">
                                                 <div class="row" style="margin-right:1px;">
@@ -426,8 +437,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            @Html.LabelFor(user => user.CandidateLanguages[i].level_experience)
-                                                            @Html.TextBoxFor(user => user.CandidateLanguages[i].level_experience, new { @class = "form-control border-input", @disabled = true })
+                                                            @Html.LabelFor(user => user.CandidateLanguages[i].language_level)
+                                                            @Html.TextBoxFor(user => user.CandidateLanguages[i].language_level, new { @class = "form-control border-input", @disabled = true })
                                                         </div>
                                                     </div>
 
@@ -449,13 +460,13 @@
                                         <div class="clearfix"></div>
                                         <div class="text-center">
 
-                                            <button type="submit" class="btn btn-info btn-fill">Update Profile</button>
+                                            <button type="submit" class="btn btn-info btn-fill classTest">Update Profile</button>
                                             <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
 
                                         </div>
                                         @*</form>*@
-                                    }
-</div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -492,8 +503,7 @@
                     </div>
                 </div>
             </footer>*@
-
-    </div>
+    }
 </body>
 </html>
 <!--   Core JS Files   -->
@@ -521,13 +531,24 @@
     function editProfile() {
         $("#target input, textarea").prop("disabled", false);
         $("#target select, textarea").prop("disabled", false);
+        $("#countryToWork").prop("disabled", false);
+        $("#Interest").prop("disabled", false);
     }
 </script>
+
+<script>
+    $(function () {
+        $(".classTest").click(function (e) {
+            return confirm("Are you sure you want to update the profile ?");
+        });
+    })
+</script>
+
 <script>
     $(document).ready(function () {
         $("#addExperience").click(function () {
             $("#divExperience").append($("#divExperience").clone(true));
-            
+
 
         });
         $("#addStudies").click(function () {

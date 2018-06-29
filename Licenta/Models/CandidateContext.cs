@@ -13,5 +13,6 @@ namespace Licenta.Models
         public DbSet<CandidateStudies> CandidateStudies { get; set; } 
         public DbSet<CandidateTechnologies> CandidateTechnologies { get; set; }
         public DbSet<CandidateLanguages> CandidateLanguages { get; set; }
+       
     }
 }

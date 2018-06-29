@@ -15,7 +15,7 @@ namespace Licenta.Models
         [Display (Name = "Technology")]
         public string tech_name { get; set; }
         [Display (Name = "Level")]
-        public string level_experience { get; set; }
+        public string tech_level { get; set; }
         public int id_candidate { get; set; }
     }
 }

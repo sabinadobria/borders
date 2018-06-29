@@ -32,11 +32,13 @@ namespace Licenta.Controllers
                 //get the list of all the languages for the logged user
                 candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == candidateId).ToList();
 
+                
                 return View(candidate);
             }
              
-            catch
+            catch (Exception ex)
             {
+               string error = ex.Message;
                return RedirectToAction("Login", "Login");
             }
 
