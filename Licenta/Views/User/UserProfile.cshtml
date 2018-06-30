@@ -218,14 +218,14 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.City)
                                                     @Html.TextBoxFor(user => user.City, new { @class = "form-control border-input", @placeholder = "Enter city", @disabled = true })
                                                     @Html.ValidationMessageFor(user => user.City, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     @Html.LabelFor(user => user.Country)
                                                     @Html.TextBoxFor(user => user.Country, new { @class = "form-control border-input", @placeholder = "Enter country", @disabled = true })
@@ -401,7 +401,17 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             @Html.LabelFor(user => user.CandidateTechnologies[i].tech_level)
-                                                            @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_level, new { @class = "form-control border-input", @disabled = true })
+                                                            @Html.DropDownListFor(user=>user.CandidateTechnologies[i].tech_level ,new List<SelectListItem>
+
+                                                                  {
+                                                                    new SelectListItem { Text = "--Select level --"},
+                                                                    new SelectListItem { Text = "Senior", Value = "Senior"},
+                                                                    new SelectListItem { Text = "Middle", Value = "Middle"},
+                                                                    new SelectListItem { Text = "Junior", Value = "Junior"}
+
+                                                                  }, new { @class = "form-control border-input", @style = "width:215px;", @disabled = true, @id = "tech_level" })
+
+                                                            @*@Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_level, new { @class = "form-control border-input", @disabled = true })*@
                                                         </div>
                                                     </div>
 
@@ -444,10 +454,8 @@
 
                                                 </div>
                                             </div>
+                                            <br /> 
                                             <br />
-                                            <br />
-
-
                                         }
                                         <div class="form-group">
                                             <label>Add more</label>
@@ -533,6 +541,7 @@
         $("#target select, textarea").prop("disabled", false);
         $("#countryToWork").prop("disabled", false);
         $("#Interest").prop("disabled", false);
+        $("#tech_level").prop("disabled", false);
     }
 </script>
 
