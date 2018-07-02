@@ -50,6 +50,25 @@ namespace Licenta.Controllers
             }
          
         }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveProfile(CandidateProfile candidateProfile)
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            ModelState.Clear();
+
+           // db.SavedCandidates.Add(savedCandidate);
+            db.SaveChanges();
+            return View("SavedCandidates");
+        }
+
+        public ActionResult SavedCandidates()
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            List<SavedCandidate> savedCandidates = db.SavedCandidates.ToList();
+            return View(savedCandidates);
+        }
 
         public ActionResult Preview(int? id)
         {

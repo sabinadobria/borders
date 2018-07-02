@@ -167,6 +167,7 @@
     <Compile Include="Models\CandidateProfile.cs" />
     <Compile Include="Models\CandidateStudies.cs" />
     <Compile Include="Models\CandidateTechnologies.cs" />
+    <Compile Include="Models\SavedCandidate.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\CandidateRegister.cs" />
     <Compile Include="Models\CompanyRegister.cs" />
@@ -378,6 +379,7 @@
     <Content Include="Views\CandidateProfiles\Edit.cshtml" />
     <Content Include="Views\CandidateProfiles\Index.cshtml" />
     <Content Include="Views\Candidates\Preview.cshtml" />
+    <Content Include="Views\Candidates\SavedCandidates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,223 @@
+﻿@model  IEnumerable<Licenta.Models.SavedCandidate>
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Welcome to No Borders</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="/assets/css/paper-dashboard.css" rel="stylesheet" />
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="/assets/css/themify-icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="black" data-active-color="danger">
+
+            <!--
+                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+            -->
+
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="#" class="simple-text">
+                        No Borders
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li>
+                        <a href="/default/index">
+                            <i class="ti-panel"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/candidates/candidateslist">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Candidates</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Favorites</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">The candidates you are interested in!</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li>
+                                <a href="/default/index">
+                                    <i class="ti-power-off"></i>
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+           
+
+
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+
+
+                                    <div class="content table-responsive table-full-width">
+                                        <table id="favoriteList" class="table table-striped">
+                                            <thead>
+
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                            <th>Country</th>
+                                            <th>Skills</th>
+                                            <th>Experience</th>
+                                            <th>Status</th>
+                                            <th>Process</th>
+                                            <th>Actions</th>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var candidate in Model)
+                                                {
+                                                    <tr>
+
+                                                        <td>@candidate.First_name</td>
+                                                        <td>@candidate.Last_name</td>
+                                                        <td>@candidate.Country_to_work</td>
+                                                        <td>@candidate.Skill</td>
+                                                        <td>@candidate.Experience</td>
+                                                        <td>@candidate.Status</td>
+                                                        <td>Not contacted</td>
+                                                        <td>
+                                                            @Html.ActionLink("Delete", "UserDetails", "User", new { id = candidate.Id_SavedCandidate }, null) |
+                                                            @Html.ActionLink("Preview", "Preview", "User", new { id = candidate.Id_SavedCandidate }, null) |
+                                                            @Html.ActionLink("Process", "Preview", "User", new { id = candidate.Id_SavedCandidate }, null)
+
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="copyright pull-right">
+                        &copy;
+                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">NoBorders</a>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<!--   Core JS Files   -->
+<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="/assets/js/bootstrap-checkbox-radio.js"></script>
+
+<!--  Charts Plugin -->
+<script src="/assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="/assets/js/paper-dashboard.js"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/js/demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.material.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.material.min.css">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#favoriteList').DataTable({
+            columnDefs: [
+                {
+                    targets: [0, 1, 2],
+                    className: 'mdl-data-table__cell--non-numeric'
+                }
+            ]
+        });
+    });
+</script>
+
