@@ -125,7 +125,7 @@
                                         <th>Surname</th>
                                         <th>Country</th>
                                         <th>Skills</th>
-                                        <th>Experienta</th>
+                                        <th>Experience</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                         </thead>
@@ -133,21 +133,50 @@
 
                                             @foreach (var candidate in Model)
                                             {
-                                                <tr>
-                                                    <td>@candidate.First_name</td>
-                                                    <td>@candidate.Last_name</td>
-                                                    <td>Romania</td>
-                                                    <td>Java</td>
-                                                    <td>Junior</td>
-                                                    <td>Not interested</td>
-                                                    <td>
-                                                        @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.Id_candidate }, null) |
-                                                        @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null)
+                                            <tr>
+                                                <td>@candidate.First_name</td>
+                                                <td>@candidate.Last_name</td>
+                                                <td>@candidate.Country_To_Work</td>
 
-                                                    </td>
-                                                </tr>
-                                            }
+                                                @for (int i = 0;i< candidate.CandidateTechnologies.Count(); i++)
+                                                {
+                                                    if (candidate.CandidateTechnologies[i].tech_level == "Senior")
+                                                    {
+                                                        <td>@candidate.CandidateTechnologies[i].tech_level</td>
+                                                        <td>@candidate.CandidateTechnologies[i].tech_name</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>NA</td>
+                                                        <td>NA</td>
+                                                    }
+                                                    @*}
+                                                    if (item.tech_level != "Senior" && item.tech_level != "Junior")
+                                                    {
+                                                        <td>@item.tech_level</td>
+                                                        <td>@item.tech_name</td>
+                                                    }
+                                                     if (item.tech_level != "Middle" && item.tech_level != "Senior")
+                                                    {
+                                                        <td>@item.tech_level</td>
+                                                        <td>@item.tech_name</td>
+                                                    }
+                                                    if (String.IsNullOrEmpty(item.tech_level))
+                                                    {
+                                                        <td>N/A</td>
+                                                        <td>N/A</td>
+                                                    }*@
+                                                }
+                                                <td>@candidate.Interest</td>
+                                                <td>
+                                                    @Html.ActionLink("Save profile", "UserDetails", "User", new { id = candidate.Id_candidate }, null) |
+                                                    @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null)
 
+                                                </td>
+
+                                            </tr>
+                                                
+                                             }
                                         </tbody>
                                     </table>
 
