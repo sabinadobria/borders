@@ -1,4 +1,5 @@
-﻿@model  IEnumerable <Licenta.Models.CandidateProfile>
+﻿@using Licenta.Models
+@model  List <CandidateProfile>
 @{
     Layout = null;
 
@@ -135,11 +136,14 @@
 
                                                 @foreach (var candidate in Model)
                                                 {
+
                                                     <tr>
-                                                        <td>@candidate.First_name</td>
+                                                        
+                                                        @Html.HiddenFor(x => candidate.Id_candidate)
+                                                        <td>@Html.DisplayFor(x => candidate.First_name)</td>
                                                         <td>@candidate.Last_name</td>
                                                         <td>@candidate.Country_To_Work</td>
-                                                        @{ var level1 = -1;
+                                                        @{  var level1 = -1;
                                                             var level2 = -1;
                                                             var level3 = -1;
                                                             var candidateTechSenior = "";
@@ -210,19 +214,19 @@
                                                         }
                                                         <td>@candidate.Interest</td>
                                                         <td>
-                                                            @Html.ActionLink("Preview", "Preview", "Candidates", new { id = candidate.Id_candidate }, null) |
-                                                            @Html.ActionLink("save", "SaveProfile", "Candidates", new { id = candidate.Id_candidate , @type = "submit"}, null)
+                                                            <button type="submit">salvezazaa</button>
+                                                             @Html.ActionLink("SaveProfile", "SaveProfile", new { id = candidate.Id_candidate })
 
                                                         </td>
 
                                                     </tr>
 
-                                                            }
+                                                 }
                                             </tbody>
                                         </table>
 
                                     </div>
-                                                            }
+                                }
                                 </div>
                         </div>
 

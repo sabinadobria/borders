@@ -141,10 +141,8 @@
                                                         <td>@candidate.Status</td>
                                                         <td>Not contacted</td>
                                                         <td>
-                                                            @Html.ActionLink("Delete", "UserDetails", "User", new { id = candidate.Id_SavedCandidate }, null) |
-                                                            @Html.ActionLink("Preview", "Preview", "User", new { id = candidate.Id_SavedCandidate }, null) |
-                                                            @Html.ActionLink("Process", "Preview", "User", new { id = candidate.Id_SavedCandidate }, null)
-
+                                                            @Html.ActionLink("Delete", "Delete", "Candidates", new { id = candidate.Id_SavedCandidate }, null) 
+                                                    
                                                         </td>
                                                     </tr>
                                                 }
