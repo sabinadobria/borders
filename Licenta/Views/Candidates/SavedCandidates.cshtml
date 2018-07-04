@@ -144,23 +144,10 @@
                                                     <td>@Html.DisplayFor(x => Model[i].Skill)</td>
                                                     <td>@Html.DisplayFor(x => Model[i].Experience)</td>
                                                     <td>@Html.DisplayFor(x => Model[i].Status)</td>
-                                     
-                                                    <td style="width: 180px;">
-                                                        @Html.DropDownList("Process", new List<SelectListItem>
-                                                            {
-                                                            new SelectListItem { Text = "Contacted", Value = "Contacted"},
-                                                            new SelectListItem { Text = "Offer made", Value = "Offer made"},
-                                                            new SelectListItem { Text = "Offer accepted", Value = "Offer accepted"},
-                                                            new SelectListItem { Text = "Offer refused", Value = "Offer refused"},
-                                                            new SelectListItem { Text = "In interview", Value = "In interview"},
-                                                            new SelectListItem { Text = "Not a match", Value = "Not a match"},
-
-                                                            }, "Set Process", new { @class = "form-control border-input", @disabled = true, @id = "processIndex" })
-                                                    </td>
-                                                    
+                                                    <td>@Html.DisplayFor(x => Model[i].Process)</td>
                                                     <td style="width: 180px;">
                                                         @Html.ActionLink("Delete", "Delete", "Candidates", new { id = Model[i].Id_SavedCandidate }, null) |
-                                                        <a href="#" onclick="setProcess()">Set Process</a>
+                                                        @Html.ActionLink("Set Process", "SetCandidateProces", "Candidates", new { id = Model[i].Id_SavedCandidate }, null) |
                                                     </td>
                                                 </tr>
 

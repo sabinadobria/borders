@@ -1,0 +1,160 @@
+﻿@model Licenta.Models.SavedCandidate
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Welcome to No Borders</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="/assets/css/paper-dashboard.css" rel="stylesheet" />
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="/assets/css/themify-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width" />
+    <title> setCandidateProcess </title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 style="text-align:center;">Set process for @Model.First_name&nbsp;@Model.Last_name</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id_SavedCandidate)
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.First_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.First_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Last_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Last_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+             
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Country_to_work, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Country_to_work, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+               
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Skill, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Skill, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+              
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Process, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Process", new List<SelectListItem>
+                                                            {
+                                                            new SelectListItem { Text = "Contacted", Value = "Contacted"},
+                                                            new SelectListItem { Text = "Offer made", Value = "Offer made"},
+                                                            new SelectListItem { Text = "Offer accepted", Value = "Offer accepted"},
+                                                            new SelectListItem { Text = "Offer refused", Value = "Offer refused"},
+                                                            new SelectListItem { Text = "In interview", Value = "In interview"},
+                                                            new SelectListItem { Text = "Not a match", Value = "Not a match"},
+
+                                                            }, "Set Process", new { @class = "form-control border-input" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-succes" />
+                    @Html.ActionLink("Back to list", "SavedCandidates", new { @class = "btn btn-default"})
+                </div>
+            </div>
+        </div>
+
+        <div>
+            
+        </div>
+    }
+</body>
+
+</html>
+
+
+<!--   Core JS Files   -->
+<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="/assets/js/bootstrap-checkbox-radio.js"></script>
+
+<!--  Charts Plugin -->
+<script src="/assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="/assets/js/paper-dashboard.js"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/js/demo.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>

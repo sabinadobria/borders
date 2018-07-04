@@ -3,6 +3,7 @@ using LicentaBUS.BusinessLayer;
 using NoBordersConnectionDb;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -79,7 +80,7 @@ namespace Licenta.Controllers
                 savedCandidate.Last_name = candidate.Last_name;
                 savedCandidate.Country_to_work = candidate.Country_To_Work;
                 savedCandidate.Status = candidate.Interest;
-                savedCandidate.Process = "Contacted";
+                savedCandidate.Process = "";
 
                 List<CandidateTechnologies> skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Senior    ").ToList();
                 if (skills.Count == 0)
@@ -133,6 +134,38 @@ namespace Licenta.Controllers
             List<SavedCandidate> savedCandidates = db.SavedCandidates.ToList();
             return View(savedCandidates);
         }
+
+        // GET: CandidateProfiles/Edit/5
+        public ActionResult SetCandidateProces(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
+            if (savedCandidate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(savedCandidate);
+        }
+
+        // POST: CandidateProfiles/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SetCandidateProces(SavedCandidate savedCandidate)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(savedCandidate).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("SavedCandidates");
+            }
+            return View(savedCandidate);
+        }
+
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SavedCandidates(List<SavedCandidate> SavedCandidates)
