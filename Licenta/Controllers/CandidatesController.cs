@@ -3,6 +3,7 @@ using LicentaBUS.BusinessLayer;
 using NoBordersConnectionDb;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -133,6 +134,30 @@ namespace Licenta.Controllers
             return View(savedCandidates);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SavedCandidates(List<SavedCandidate> SavedCandidates)
+        {
+            NoBordersDB db = new NoBordersDB();
+            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                //update candidate contact data
+               // db.Entry(savedCandidate).State = System.Data.Entity.EntityState.Modified;
+                
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    string error = ex.Message;
+                }
+
+                return RedirectToAction("SavedCandidates");
+            }
+            return View();
+        }
+
         public ActionResult Preview(int? id)
         {
             if(id == null)
@@ -148,7 +173,7 @@ namespace Licenta.Controllers
             return View(candidateProfile);
         }
 
-        // GET: CandidateProfiles/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -160,28 +185,30 @@ namespace Licenta.Controllers
             {
                 return HttpNotFound();
             }
-            return View(savedCandidate);
-        }
-
-        // POST: CandidateProfiles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
             db.SavedCandidates.Remove(savedCandidate);
             db.SaveChanges();
-            return RedirectToAction("SavedCandidates","Candidates");
+            return RedirectToAction("SavedCandidates", "Candidates");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //// POST: CandidateProfiles/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
+        //    db.SavedCandidates.Remove(savedCandidate);
+        //    db.SaveChanges();
+        //    return RedirectToAction("SavedCandidates","Candidates");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
     }
 }

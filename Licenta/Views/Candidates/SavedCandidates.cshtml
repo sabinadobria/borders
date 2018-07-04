@@ -1,4 +1,5 @@
-﻿@model  IEnumerable<Licenta.Models.SavedCandidate>
+﻿@using Licenta.Models
+@model  IList <SavedCandidate>
 @{
     Layout = null;
 }
@@ -36,75 +37,76 @@
     <link href="/assets/css/themify-icons.css" rel="stylesheet">
 
 </head>
-<body>
 
-    <div class="wrapper">
-        <div class="sidebar" data-background-color="black" data-active-color="danger">
+@using (@Html.BeginForm())
+{
+    <body>
+        <div class="wrapper">
+            <div class="sidebar" data-background-color="black" data-active-color="danger">
 
-            <!--
-                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-            -->
+                <!--
+                    Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+                    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+                -->
 
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        No Borders
-                    </a>
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            No Borders
+                        </a>
+                    </div>
+
+                    <ul class="nav">
+                        <li>
+                            <a href="/default/index">
+                                <i class="ti-panel"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/candidates/candidateslist">
+                                <i class="ti-view-list-alt"></i>
+                                <p>Candidates</p>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="ti-view-list-alt"></i>
+                                <p>Favorites</p>
+                            </a>
+                        </li>
+
+                    </ul>
                 </div>
-
-                <ul class="nav">
-                    <li>
-                        <a href="/default/index">
-                            <i class="ti-panel"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/candidates/candidateslist">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Candidates</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Favorites</p>
-                        </a>
-                    </li>
-
-                </ul>
             </div>
-        </div>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar bar1"></span>
-                            <span class="icon-bar bar2"></span>
-                            <span class="icon-bar bar3"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">The candidates you are interested in!</a>
+            <div class="main-panel">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar bar1"></span>
+                                <span class="icon-bar bar2"></span>
+                                <span class="icon-bar bar3"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">The candidates you are interested in!</a>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li>
+                                    <a href="/default/index">
+                                        <i class="ti-power-off"></i>
+                                        <p>Logout</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
+                </nav>
 
-                            <li>
-                                <a href="/default/index">
-                                    <i class="ti-power-off"></i>
-                                    <p>Logout</p>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
-
-           
 
 
                 <div class="content">
@@ -116,6 +118,7 @@
 
                                     <div class="content table-responsive table-full-width">
                                         <table id="favoriteList" class="table table-striped">
+                                             @Html.ValidationSummary(true, "", new { @style = "color:red" }) 
                                             <thead>
 
                                             <th>Name</th>
@@ -129,27 +132,45 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach (var candidate in Model)
+                                                @for (int i = 0; i < Model.Count(); i++)
                                                 {
-                                                    <tr>
 
-                                                        <td>@candidate.First_name</td>
-                                                        <td>@candidate.Last_name</td>
-                                                        <td>@candidate.Country_to_work</td>
-                                                        <td>@candidate.Skill</td>
-                                                        <td>@candidate.Experience</td>
-                                                        <td>@candidate.Status</td>
-                                                        <td>Not contacted</td>
-                                                        <td>
-                                                            @Html.ActionLink("Delete", "Delete", "Candidates", new { id = candidate.Id_SavedCandidate }, null) 
+                                                <tr>
+                                                    @Html.HiddenFor(x => Model[i].Id_SavedCandidate)
+                                                
+                                                    <td>@Html.DisplayFor(x =>Model[i].First_name)</td>
+                                                    <td>@Html.DisplayFor(x => Model[i].Last_name)</td>
+                                                    <td>@Html.DisplayFor(x => Model[i].Country_to_work)</td>
+                                                    <td>@Html.DisplayFor(x => Model[i].Skill)</td>
+                                                    <td>@Html.DisplayFor(x => Model[i].Experience)</td>
+                                                    <td>@Html.DisplayFor(x => Model[i].Status)</td>
+                                     
+                                                    <td style="width: 180px;">
+                                                        @Html.DropDownList("Process", new List<SelectListItem>
+                                                            {
+                                                            new SelectListItem { Text = "Contacted", Value = "Contacted"},
+                                                            new SelectListItem { Text = "Offer made", Value = "Offer made"},
+                                                            new SelectListItem { Text = "Offer accepted", Value = "Offer accepted"},
+                                                            new SelectListItem { Text = "Offer refused", Value = "Offer refused"},
+                                                            new SelectListItem { Text = "In interview", Value = "In interview"},
+                                                            new SelectListItem { Text = "Not a match", Value = "Not a match"},
+
+                                                            }, "Set Process", new { @class = "form-control border-input", @disabled = true, @id = "processIndex" })
+                                                    </td>
                                                     
-                                                        </td>
-                                                    </tr>
+                                                    <td style="width: 180px;">
+                                                        @Html.ActionLink("Delete", "Delete", "Candidates", new { id = Model[i].Id_SavedCandidate }, null) |
+                                                        <a href="#" onclick="setProcess()">Set Process</a>
+                                                    </td>
+                                                </tr>
+
+
                                                 }
 
                                             </tbody>
-                                        </table>
 
+                                        </table>
+                                        <button type="submit" style="border-radius: 12px; margin-left:10px;" class="btn btn-default">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -161,22 +182,25 @@
                         </div>
                     </div>
                 </div>
-            
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">NoBorders</a>
+
+
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="copyright pull-right">
+                            &copy;
+                            <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">NoBorders</a>
+                        </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
 
-
+            </div>
         </div>
-    </div>
 
 
-</body>
+    </body>
+}
 
 </html>
 <!--   Core JS Files   -->
@@ -218,4 +242,13 @@
         });
     });
 </script>
+
+
+<script>
+    function setProcess() {
+        $("#favoriteList,select").prop("disabled", false);
+    }
+</script>
+
+
 
