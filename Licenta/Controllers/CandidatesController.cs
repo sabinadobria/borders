@@ -14,7 +14,7 @@ namespace Licenta.Controllers
 {
     public class CandidatesController : Controller
     {
-        // GET: Table
+        // GET: candidates
         NoBordersDB db = new NoBordersDB();
         public ActionResult CandidatesList()
         {
@@ -80,8 +80,10 @@ namespace Licenta.Controllers
                 candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == id).ToList();
 
                 SavedCandidate savedCandidate = new SavedCandidate();
-                string recuriterEmail = (string)Session["recruiter_email"];
-                var checkemail = db.SavedCandidates.FirstOrDefault(x => x.Email == candidate.Email && x.Recruiter_email == recuriterEmail);
+
+                //retrieve the email of the logged in recruiter
+                string recruiterEmail = (string)Session["recruiter_email"];
+                var checkemail = db.SavedCandidates.FirstOrDefault(x => x.Email == candidate.Email && x.Recruiter_email == recruiterEmail);
 
                 //check if the candidate is allready saved
                 if (checkemail == null)
@@ -200,30 +202,6 @@ namespace Licenta.Controllers
         }
 
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult SavedCandidates(List<SavedCandidate> SavedCandidates)
-        //{
-        //    NoBordersDB db = new NoBordersDB();
-        //    ModelState.Clear();
-        //    if (ModelState.IsValid)
-        //    {
-        //        //update candidate contact data
-        //       // db.Entry(savedCandidate).State = System.Data.Entity.EntityState.Modified;
-                
-        //        try
-        //        {
-        //            db.SaveChanges();
-        //        }
-        //        catch (DbUpdateException ex)
-        //        {
-        //            string error = ex.Message;
-        //        }
-
-        //        return RedirectToAction("SavedCandidates");
-        //    }
-        //    return View();
-        //}
-
         public ActionResult Preview(int? id)
         {
             if(id == null)
@@ -239,23 +217,6 @@ namespace Licenta.Controllers
             return View(candidateProfile);
         }
 
-        //clasic delete for saved candidate
-
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
-        //    if (savedCandidate == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    db.SavedCandidates.Remove(savedCandidate);
-        //    db.SaveChanges();
-        //    return RedirectToAction("SavedCandidates", "Candidates");
-        //}
 
        //modal delete for saved candidate 
         public JsonResult DeleteSavedCandidate (int? Id_SavedCandidate)
