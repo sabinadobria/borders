@@ -2,6 +2,12 @@
 @model  IList<SavedCandidate>
 @{
     Layout = null;
+
+    if (string.IsNullOrEmpty((string)Session["Recruiter_email"]))
+    {
+        Response.Redirect("~/Login/Login");
+    }
+
 }
 
 <head>
@@ -91,7 +97,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="/default/index">
+                                <a href="@Url.Action("Logout","Login")">
                                     <i class="ti-power-off"></i>
                                     <p>Logout</p>
                                 </a>
@@ -130,7 +136,7 @@
                                             @for (int i = 0; i < Model.Count(); i++)
                                           {
 
-                                <tr>
+                                <tr id="row_@Model[i].Id_SavedCandidate">
                                     @Html.HiddenFor(x => Model[i].Id_SavedCandidate)
 
                                     <td>@Html.DisplayFor(x => Model[i].First_name)</td>
@@ -359,7 +365,7 @@
             success: function (result) {
                 $("#loaderDiv").hide();
                 $("#deleteSavedCandidate").modal('hide');
-                top.location.href = '/Candidates/SavedCandidates';
+                $("#row_" + savedCandId).remove();
             }
         })
     }

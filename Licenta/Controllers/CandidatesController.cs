@@ -18,6 +18,12 @@ namespace Licenta.Controllers
         NoBordersDB db = new NoBordersDB();
         public ActionResult CandidatesList()
         {
+
+            if (string.IsNullOrEmpty((string)Session["Recruiter_email"]))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             try
             {
                 List<CandidateProfile> candidateProfiles = db.CandidateProfiles.ToList();
@@ -74,8 +80,8 @@ namespace Licenta.Controllers
                 candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == id).ToList();
 
                 SavedCandidate savedCandidate = new SavedCandidate();
-
-                var checkemail = db.SavedCandidates.FirstOrDefault(x => x.Email == candidate.Email);
+                string recuriterEmail = (string)Session["recruiter_email"];
+                var checkemail = db.SavedCandidates.FirstOrDefault(x => x.Email == candidate.Email && x.Recruiter_email == recuriterEmail);
 
                 //check if the candidate is allready saved
                 if (checkemail == null)
@@ -85,6 +91,7 @@ namespace Licenta.Controllers
                     savedCandidate.Last_name = candidate.Last_name;
                     savedCandidate.Country_to_work = candidate.Country_To_Work;
                     savedCandidate.Status = candidate.Interest;
+                    savedCandidate.Recruiter_email = Session["recruiter_email"].ToString();
 
                     savedCandidate.Process = "";
 
@@ -145,9 +152,20 @@ namespace Licenta.Controllers
         public ActionResult SavedCandidates()
         {
             NoBordersDB db = new NoBordersDB();
+            List<SavedCandidate> savedCandidates;
+            string recruiter = "";
 
-            List<SavedCandidate> savedCandidates = db.SavedCandidates.ToList();
-            return View(savedCandidates);
+            if (string.IsNullOrEmpty((string)Session["Recruiter_email"]))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                recruiter = Session["Recruiter_email"].ToString();
+                savedCandidates = db.SavedCandidates.Where(x => x.Recruiter_email == recruiter).ToList();
+                return View(savedCandidates);
+            }
+             
         }
 
         // GET: CandidateProfiles/Edit/5

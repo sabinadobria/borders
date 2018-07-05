@@ -3,7 +3,7 @@
 @{
     Layout = null;
 
-    if (Session["recruiter_email"] == null)
+    if (string.IsNullOrEmpty((string)Session["Recruiter_email"]))
     {
         Response.Redirect("~/Login/Login");
     }
@@ -99,7 +99,7 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="/login/logout">
+                                <a href="@Url.Action("Logout","Login")">
                                     <i class="ti-power-off"></i>
                                     <p>Logout</p>
                                 </a>
