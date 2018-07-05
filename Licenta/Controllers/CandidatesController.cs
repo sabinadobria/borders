@@ -60,7 +60,7 @@ namespace Licenta.Controllers
             {
                 ModelState.Clear();
                 NoBordersDB db = new NoBordersDB();
-               
+
 
                 var candidate = db.CandidateProfiles.Single(cand => cand.Id_candidate == id);
 
@@ -73,59 +73,74 @@ namespace Licenta.Controllers
                 //get the list of all the languages for the logged user
                 candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == id).ToList();
 
-
-   
                 SavedCandidate savedCandidate = new SavedCandidate();
-                savedCandidate.First_name = candidate.First_name;
-                savedCandidate.Last_name = candidate.Last_name;
-                savedCandidate.Country_to_work = candidate.Country_To_Work;
-                savedCandidate.Status = candidate.Interest;
-                savedCandidate.Process = "";
 
-                List<CandidateTechnologies> skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Senior    ").ToList();
-                if (skills.Count == 0)
+                var checkemail = db.SavedCandidates.FirstOrDefault(x => x.Email == candidate.Email);
+
+                //check if the candidate is allready saved
+                if (checkemail == null)
                 {
-                    skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Middle    ").ToList();
+                    savedCandidate.Email = candidate.Email;
+                    savedCandidate.First_name = candidate.First_name;
+                    savedCandidate.Last_name = candidate.Last_name;
+                    savedCandidate.Country_to_work = candidate.Country_To_Work;
+                    savedCandidate.Status = candidate.Interest;
 
-                    if(skills.Count==0)
+                    savedCandidate.Process = "";
+
+                    List<CandidateTechnologies> skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Senior    ").ToList();
+                    if (skills.Count == 0)
                     {
-                        skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Junior    ").ToList();
+                        skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Middle    ").ToList();
+
                         if (skills.Count == 0)
                         {
-                            savedCandidate.Skill = "N/A";
-                            savedCandidate.Experience = "N/A";
+                            skills = candidate.CandidateTechnologies.Where(x => x.tech_level == "Junior    ").ToList();
+                            if (skills.Count == 0)
+                            {
+                                savedCandidate.Skill = "N/A";
+                                savedCandidate.Experience = "N/A";
+                            }
+                            else
+                            {
+                                savedCandidate.Skill = skills[0].tech_name;
+                                savedCandidate.Experience = skills[0].tech_level;
+                            }
                         }
                         else
                         {
                             savedCandidate.Skill = skills[0].tech_name;
                             savedCandidate.Experience = skills[0].tech_level;
                         }
+
+
+
                     }
                     else
                     {
                         savedCandidate.Skill = skills[0].tech_name;
                         savedCandidate.Experience = skills[0].tech_level;
                     }
-                   
 
 
+                    db.SavedCandidates.Add(savedCandidate);
+                    db.SaveChanges();
+                    return RedirectToAction("SavedCandidates", "Candidates");
                 }
-                else
-                {
-                    savedCandidate.Skill = skills[0].tech_name;
-                    savedCandidate.Experience = skills[0].tech_level;
-                }
-               
+                return RedirectToAction("DoSomething");
 
-
-                db.SavedCandidates.Add(savedCandidate);
-                db.SaveChanges();
-                return RedirectToAction("SavedCandidates","Candidates");
             }
-            return View("candidateProfiles");
-           
+             
+            return View("CandidatesList");
+
         }
-        
+
+
+        public ActionResult DoSomething()
+        {
+            return Content("<script language='javascript' type='text/javascript'>alert('Candidate allready saved');</script>");
+        }
+
         //GET :Favorites List
         public ActionResult SavedCandidates()
         {
@@ -167,29 +182,29 @@ namespace Licenta.Controllers
         }
 
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SavedCandidates(List<SavedCandidate> SavedCandidates)
-        {
-            NoBordersDB db = new NoBordersDB();
-            ModelState.Clear();
-            if (ModelState.IsValid)
-            {
-                //update candidate contact data
-               // db.Entry(savedCandidate).State = System.Data.Entity.EntityState.Modified;
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult SavedCandidates(List<SavedCandidate> SavedCandidates)
+        //{
+        //    NoBordersDB db = new NoBordersDB();
+        //    ModelState.Clear();
+        //    if (ModelState.IsValid)
+        //    {
+        //        //update candidate contact data
+        //       // db.Entry(savedCandidate).State = System.Data.Entity.EntityState.Modified;
                 
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateException ex)
-                {
-                    string error = ex.Message;
-                }
+        //        try
+        //        {
+        //            db.SaveChanges();
+        //        }
+        //        catch (DbUpdateException ex)
+        //        {
+        //            string error = ex.Message;
+        //        }
 
-                return RedirectToAction("SavedCandidates");
-            }
-            return View();
-        }
+        //        return RedirectToAction("SavedCandidates");
+        //    }
+        //    return View();
+        //}
 
         public ActionResult Preview(int? id)
         {
@@ -206,42 +221,55 @@ namespace Licenta.Controllers
             return View(candidateProfile);
         }
 
-        
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
-            if (savedCandidate == null)
-            {
-                return HttpNotFound();
-            }
-            db.SavedCandidates.Remove(savedCandidate);
-            db.SaveChanges();
-            return RedirectToAction("SavedCandidates", "Candidates");
-        }
+        //clasic delete for saved candidate
 
-        //// POST: CandidateProfiles/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
+        //public ActionResult Delete(int? id)
         //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
         //    SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
+        //    if (savedCandidate == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
         //    db.SavedCandidates.Remove(savedCandidate);
         //    db.SaveChanges();
-        //    return RedirectToAction("SavedCandidates","Candidates");
+        //    return RedirectToAction("SavedCandidates", "Candidates");
         //}
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+       //modal delete for saved candidate 
+        public JsonResult DeleteSavedCandidate (int? Id_SavedCandidate)
+        {
+            SavedCandidate savedCandidate = db.SavedCandidates.Find(Id_SavedCandidate);
+
+            bool result = false;
+
+            if (savedCandidate != null)
+            {
+                db.SavedCandidates.Remove(savedCandidate);
+                db.SaveChanges();
+                result = true;
+            }
+          
+            return Json(result,JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SetProcess(int? Id_SavedCandidate,string Process)
+        {
+            SavedCandidate savedCandidate = db.SavedCandidates.Find(Id_SavedCandidate);
+            bool result = false;
+
+            if (savedCandidate != null)
+            {
+                savedCandidate.Process = Process;
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

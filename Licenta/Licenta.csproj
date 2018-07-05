@@ -211,6 +211,7 @@
     <Content Include="Content\bootstrapgray.min.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\grayscale.min.css" />
+    <Content Include="Content\loading.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

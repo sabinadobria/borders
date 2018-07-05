@@ -20,6 +20,7 @@ namespace Licenta.Models
         public string Experience { get; set; }
         public string Status { get; set; }
         public string Process { get; set; }
+        public string Email { get; set; }
 
     }
 }
