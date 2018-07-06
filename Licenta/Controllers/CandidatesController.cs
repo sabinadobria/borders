@@ -14,7 +14,7 @@ namespace Licenta.Controllers
 {
     public class CandidatesController : Controller
     {
-        // GET: candidates
+        //load all candidates list
         NoBordersDB db = new NoBordersDB();
         public ActionResult CandidatesList()
         {
@@ -59,25 +59,27 @@ namespace Licenta.Controllers
          
         }
 
-
-        public ActionResult SaveProfile(int? id)
+        //mark a candidate = saved
+        public JsonResult SaveProfile(int? Id_candidate)
         {
-            if (id != null)
+            bool result = false;
+
+            if (Id_candidate != null)
             {
                 ModelState.Clear();
                 NoBordersDB db = new NoBordersDB();
 
 
-                var candidate = db.CandidateProfiles.Single(cand => cand.Id_candidate == id);
+                var candidate = db.CandidateProfiles.Single(cand => cand.Id_candidate == Id_candidate);
 
                 //get the list of all the experiences for the logged in user
-                candidate.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == id).ToList();
+                candidate.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == Id_candidate).ToList();
                 //get the list of all the studies for the logged user
-                candidate.CandidateStudies = db.CandidateStudies.Where(x => x.id_candidate == id).ToList();
+                candidate.CandidateStudies = db.CandidateStudies.Where(x => x.id_candidate == Id_candidate).ToList();
                 //get the list of all the technologies for the logged user
-                candidate.CandidateTechnologies = db.CandidateTechnologies.Where(x => x.id_candidate == id).ToList();
+                candidate.CandidateTechnologies = db.CandidateTechnologies.Where(x => x.id_candidate == Id_candidate).ToList();
                 //get the list of all the languages for the logged user
-                candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == id).ToList();
+                candidate.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == Id_candidate).ToList();
 
                 SavedCandidate savedCandidate = new SavedCandidate();
 
@@ -134,23 +136,16 @@ namespace Licenta.Controllers
 
                     db.SavedCandidates.Add(savedCandidate);
                     db.SaveChanges();
-                    return RedirectToAction("SavedCandidates", "Candidates");
+                    result = true;
+                    return Json(result, JsonRequestBehavior.AllowGet);
                 }
-                return RedirectToAction("DoSomething");
-
+             return Json(result, JsonRequestBehavior.AllowGet);
             }
-             
-            return View("CandidatesList");
+            return Json(result, JsonRequestBehavior.AllowGet);
 
         }
 
-
-        public ActionResult DoSomething()
-        {
-            return Content("<script language='javascript' type='text/javascript'>alert('Candidate allready saved');</script>");
-        }
-
-        //GET :Favorites List
+        //load saved candidates list
         public ActionResult SavedCandidates()
         {
             NoBordersDB db = new NoBordersDB();
@@ -169,39 +164,8 @@ namespace Licenta.Controllers
             }
              
         }
-
-        // GET: CandidateProfiles/Edit/5
-        public ActionResult SetCandidateProces(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SavedCandidate savedCandidate = db.SavedCandidates.Find(id);
-            if (savedCandidate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(savedCandidate);
-        }
-
-        // POST: CandidateProfiles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SetCandidateProces(SavedCandidate savedCandidate)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(savedCandidate).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("SavedCandidates");
-            }
-            return View(savedCandidate);
-        }
-
-
+     
+        //preview a candidate profile
         public ActionResult Preview(int? id)
         {
             if(id == null)
@@ -217,8 +181,7 @@ namespace Licenta.Controllers
             return View(candidateProfile);
         }
 
-
-       //modal delete for saved candidate 
+        //delete  saved candidate 
         public JsonResult DeleteSavedCandidate (int? Id_SavedCandidate)
         {
             SavedCandidate savedCandidate = db.SavedCandidates.Find(Id_SavedCandidate);
@@ -235,6 +198,7 @@ namespace Licenta.Controllers
             return Json(result,JsonRequestBehavior.AllowGet);
         }
 
+        //set process for saved candidate
         public JsonResult SetProcess(int? Id_SavedCandidate,string Process)
         {
             SavedCandidate savedCandidate = db.SavedCandidates.Find(Id_SavedCandidate);

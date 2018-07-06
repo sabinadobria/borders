@@ -28,7 +28,7 @@ namespace Licenta.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (userBus.IsValid(user.email, user.password,user.userType))
+                if (userBus.IsValid(user.email, user.password,user.userTypeId))
                    {
                     CandidateProfileDL candDl = new CandidateProfileDL();
                     NoBordersDB db = new NoBordersDB();
@@ -85,28 +85,35 @@ namespace Licenta.Controllers
         [HttpPost]
         public ActionResult RegisterCandidate(CandidateRegister candidate)
         {
-            try
+
+            NoBordersDB db = new NoBordersDB();
+            var checkmail = db.Users.SingleOrDefault(x => x.email == candidate.email);
+            //check if email is allready created
+            if (checkmail == null)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    //calling stored procedure
-                    CandidateRegisterDL candDL = new CandidateRegisterDL();
-                    candDL.registerCandidate(candidate);
-                    NoBordersDB db = new NoBordersDB();
+                    if (ModelState.IsValid)
+                    {
+                        //calling stored procedure
+                        CandidateRegisterDL candDL = new CandidateRegisterDL();
+                        candDL.registerCandidate(candidate);
 
-                    var user = db.CandidateProfiles.Single(x => x.Email == candidate.email);
+                        var user = db.CandidateProfiles.Single(x => x.Email == candidate.email);
+                        Session["candidate_id"] = user.Id_candidate;
+                        Session["user_name"] = user.First_name + " " + user.Last_name;
+                        return RedirectToAction("userProfile", "user");
 
-                    Session["candidate_id"] = user.Id_candidate;
-                    Session["user_name"] = user.First_name + " " + user.Last_name;
-                    return RedirectToAction("userProfile", "user");
-
+                    }
+                    return View();
                 }
-                return View();
+                catch
+                {
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
+             
         }
         [HttpGet]
         public ActionResult RegisterCompany()
@@ -116,21 +123,29 @@ namespace Licenta.Controllers
         [HttpPost]
         public ActionResult RegisterCompany(CompanyRegister company)
         {
-            try
+            NoBordersDB db = new NoBordersDB();
+            var checkmail = db.Users.SingleOrDefault(x => x.email == company.email);
+            //check if email is allready created
+            if (checkmail == null)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    RecruiterRegisterDL recruiterDL = new RecruiterRegisterDL();
-                    recruiterDL.registerRecruiter(company);
-                    return RedirectToAction("CandidatesList", "Candidates");
+                    if (ModelState.IsValid)
+                    {
+                        RecruiterRegisterDL recruiterDL = new RecruiterRegisterDL();
+                        recruiterDL.registerRecruiter(company);
+                        return RedirectToAction("CandidatesList", "Candidates");
+                    }
+                    return View();
+
                 }
-                return View();
+                catch
+                {
+                    return View();
 
-            } catch
-            {
-                return View();
-
+                }
             }
+            return View();
         }
 
         public ActionResult ForgotPassword()

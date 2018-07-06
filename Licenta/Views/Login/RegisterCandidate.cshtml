@@ -1,4 +1,5 @@
-﻿@model Licenta.Models.CandidateRegister
+﻿@using  Licenta.Models
+@model Licenta.Models.CandidateRegister
 @{
     Layout = null;
 }
@@ -50,7 +51,7 @@
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         @Html.LabelFor(candidate => candidate.email)
-                                        @Html.TextBoxFor(candidate => candidate.email, new { @class = "form-control", @placeholder = "Enter email" })
+                                        @Html.TextBoxFor(candidate => candidate.email, new { @class = "form-control", @placeholder = "Enter email",@id ="userEmail" })
                                         @Html.ValidationMessageFor(candidate => candidate.email, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
