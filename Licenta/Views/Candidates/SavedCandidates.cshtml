@@ -91,6 +91,12 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
+
+                        <div class="alert alert-danger collapse" id="successAlertDelete" style="text-align:center">
+                            <a id="linkClose" class="close">&times;</a>
+                            <strong>Candidate successfully deleted.</strong>
+                        </div>
+
                         <a class="navbar-brand" href="#">The candidates you are interested in!</a>
                     </div>
                     <div class="collapse navbar-collapse">
@@ -366,6 +372,10 @@
                 $("#loaderDiv").hide();
                 $("#deleteSavedCandidate").modal('hide');
                 $("#row_" + savedCandId).remove();
+                $("#successAlertDelete").show('fade');
+                setTimeout(function () {
+                    $("#successAlertDelete").hide('fade');
+                }, 2000);
             }
         })
     }
