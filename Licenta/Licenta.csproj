@@ -371,7 +371,6 @@
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\HomePage\HomePage.cshtml" />
     <Content Include="Views\User\UserDetails.cshtml" />
-    <Content Include="Views\User\Preview.cshtml" />
     <Content Include="Views\Login\RegisterCompany.cshtml" />
     <Content Include="Views\Candidates\FavoriteList.cshtml" />
     <Content Include="Views\CandidateProfiles\Create.cshtml" />
@@ -387,6 +386,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

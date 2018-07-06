@@ -217,6 +217,7 @@
                                             }
                                             <td>@Model[i].Interest</td>
                                             <td>
+                                                @Html.ActionLink( "Preview", "Preview", new { id = Model[i].Id_candidate}) |
                                                 <a href="#" onclick="saveCandidateModal(@Model[i].Id_candidate)">Save</a>
                                             </td>
                                         </tr>

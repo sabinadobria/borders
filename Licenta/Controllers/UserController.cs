@@ -44,6 +44,25 @@ namespace Licenta.Controllers
 
         }
 
+        public JsonResult UploadCV (HttpPostedFileBase file)
+        {
+            bool result = false;
+            var cv = Server.MapPath("~/Uploads/") + file.FileName;
+
+            if(file.ContentLength > 0)
+            {
+                file.SaveAs(cv);
+                result = true;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+            else
+            {
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+           
+        }
+
         //update candidate informations 
 
         [AcceptVerbs(HttpVerbs.Post)]
