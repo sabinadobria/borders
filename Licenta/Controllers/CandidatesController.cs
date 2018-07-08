@@ -173,6 +173,16 @@ namespace Licenta.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CandidateProfile candidateProfile = db.CandidateProfiles.Find(id);
+            //get contact data details for logged in user
+
+            //get the list of all the experiences for the logged in user
+            candidateProfile.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == id).ToList();
+            //get the list of all the studies for the logged user
+            candidateProfile.CandidateStudies = db.CandidateStudies.Where(x => x.id_candidate == id).ToList();
+            //get the list of all the technologies for the logged user
+            candidateProfile.CandidateTechnologies = db.CandidateTechnologies.Where(x => x.id_candidate == id).ToList();
+            //get the list of all the languages for the logged user
+            candidateProfile.CandidateLanguages = db.CandidateLanguages.Where(x => x.id_candidate == id).ToList();
 
             if (candidateProfile == null)
             {
