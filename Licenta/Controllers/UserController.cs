@@ -12,6 +12,7 @@ namespace Licenta.Controllers
 {
     public class UserController : Controller
     {
+        NoBordersDB db = new NoBordersDB();
         // GET:UserDetails
         public ActionResult UserProfile()
         {
@@ -42,25 +43,6 @@ namespace Licenta.Controllers
                return RedirectToAction("Login", "Login");
             }
 
-        }
-
-        public JsonResult UploadCV (HttpPostedFileBase file)
-        {
-            bool result = false;
-            var cv = Server.MapPath("~/Uploads/") + file.FileName;
-
-            if(file.ContentLength > 0)
-            {
-                file.SaveAs(cv);
-                result = true;
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-
-            else
-            {
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-           
         }
 
         //update candidate informations 
@@ -112,18 +94,177 @@ namespace Licenta.Controllers
             return View(candidateProfile);
         }
 
-
+        //preview candidate profile
         [HttpGet]
         public ActionResult Preview(int id)
         {
             return View(Candidate.GetCandidateById(id));
         }
 
-        [HttpGet]
-        public ActionResult UserDetails(int id)
+
+
+        //add language
+        public JsonResult AddLanguage(int? Id_candidate, string language, string language_level)
         {
-            return View(Candidate.GetCandidateById(id));
+            CandidateLanguages candidateLanguages = new CandidateLanguages();
+            bool result = false;
+
+            candidateLanguages.id_candidate = (int)Id_candidate;
+            candidateLanguages.language = language;
+            candidateLanguages.language_level = language_level;
+            
+            db.CandidateLanguages.Add(candidateLanguages);
+            db.SaveChanges();
+            result = true;
+        
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        //add Tech 
+        public JsonResult AddTech(int? Id_candidate, string tech_name,string tech_level)
+        {
+            CandidateTechnologies candidateTechnologies = new CandidateTechnologies();
+            bool result = false;
+
+            candidateTechnologies.id_candidate = (int)Id_candidate;
+            candidateTechnologies.tech_name = tech_name;
+            candidateTechnologies.tech_level = tech_level;
+
+            db.CandidateTechnologies.Add(candidateTechnologies);
+            db.SaveChanges();
+            result = true;
+       
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //add Studies 
+        public JsonResult AddStudies(int? Id_candidate, string school, string diploma,string from_date, string to_date,string section)
+        {
+            CandidateStudies candidateStudies = new CandidateStudies();
+            bool result = false;
+
+            candidateStudies.id_candidate = (int)Id_candidate;
+            candidateStudies.school = school;
+            candidateStudies.diploma = diploma;
+            candidateStudies.from_date = from_date;
+            candidateStudies.to_date = to_date;
+            candidateStudies.section = section;
+
+
+            db.CandidateStudies.Add(candidateStudies);
+            db.SaveChanges();
+            result = true;
+           
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //add Experience 
+        public JsonResult AddExperience(int? Id_candidate, string companyname,string from_date,string to_date,string description,string position)
+        {
+            CandidateExperience candidateExperience = new CandidateExperience();
+            bool result = false;
+
+            candidateExperience.Id_candidate = (int)Id_candidate;
+            candidateExperience.company_name = companyname;
+            candidateExperience.from_date = from_date;
+            candidateExperience.to_date = to_date;
+            candidateExperience.description = description;
+            candidateExperience.position = position;
+
+            db.CandidateExperiences.Add(candidateExperience);
+            db.SaveChanges();
+
+            result = true;
+           
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+        //remove language row
+        public JsonResult DeleteLanguage(int? Id_candidate, int? id_language)
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            CandidateProfile candidateProfile = db.CandidateProfiles.Find(Id_candidate);
+            CandidateLanguages candidateLanguage = db.CandidateLanguages.SingleOrDefault(x => x.id_candidate == Id_candidate && x.id_language==id_language);
+
+            bool result = false;
+
+            if (candidateLanguage != null)
+            {
+                db.CandidateLanguages.Remove(candidateLanguage);
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //remove tech row
+        public JsonResult DeleteTech(int? Id_candidate, int? id_tech)
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            CandidateProfile candidateProfile = db.CandidateProfiles.Find(Id_candidate);
+            CandidateTechnologies candidateTechnology = db.CandidateTechnologies.SingleOrDefault(x => x.id_candidate == Id_candidate && x.id_tech == id_tech);
+
+            bool result = false;
+
+            if (candidateTechnology != null)
+            {
+                db.CandidateTechnologies.Remove(candidateTechnology);
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //remove studies row
+        public JsonResult DeleteStudies(int? Id_candidate, int? id_education)
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            CandidateProfile candidateProfile = db.CandidateProfiles.Find(Id_candidate);
+            CandidateStudies candidateStudies = db.CandidateStudies.SingleOrDefault(x => x.id_candidate == Id_candidate && x.id_education == id_education);
+
+            bool result = false;
+
+            if (candidateStudies != null)
+            {
+                db.CandidateStudies.Remove(candidateStudies);
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //remove experience row
+        public JsonResult DeleteExperience(int? Id_candidate, int? Id_experience)
+        {
+            NoBordersDB db = new NoBordersDB();
+
+            CandidateProfile candidateProfile = db.CandidateProfiles.Find(Id_candidate);
+            CandidateExperience candidateExperience = db.CandidateExperiences.SingleOrDefault(x => x.Id_candidate == Id_candidate && x.Id_experience == Id_experience);
+
+            bool result = false;
+
+            if (candidateExperience != null)
+            {
+                db.CandidateExperiences.Remove(candidateExperience);
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+ 
     }
 }

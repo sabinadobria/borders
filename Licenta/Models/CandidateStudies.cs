@@ -18,9 +18,9 @@ namespace Licenta.Models
         [Display(Name = "Diploma")]
         public string diploma { get; set; }
         [Display(Name = "Starting date")]
-        public DateTime from_date { get; set; }
+        public string from_date { get; set; }
         [Display(Name = "End date")]
-        public DateTime to_date { get; set; }
+        public string to_date { get; set; }
         [Display(Name = "Section")]
         public string section { get; set; }
         public int id_candidate { get; set; }

@@ -21,10 +21,10 @@ namespace Licenta.Models
         public string company_name { get; set; }
 
         [Display(Name ="From")]
-        public DateTime from_date { get; set; }
+        public string from_date { get; set; }
 
         [Display(Name ="Until")]
-        public DateTime to_date { get; set; }
+        public string to_date { get; set; }
 
         [Display(Name ="Job Description")]
         public string description { get; set; }
