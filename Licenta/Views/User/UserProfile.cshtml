@@ -76,10 +76,49 @@
                             <p>Country I want to work</p>
                             @Html.DropDownList("Country_To_Work", new List<SelectListItem>
                                                                                                                                                                                                                                   {
-                                                                                                                                                                                                                                     new SelectListItem { Text = "Romania", Value = "Romania"},
-                                                                                                                                                                                                                                     new SelectListItem { Text = "France", Value = "France"},
-                                                                                                                                                                                                                                     new SelectListItem { Text = "United Kingdom", Value = "United Kingdom"},
-                                                                                                                                                                                                                                     new SelectListItem { Text = "USA", Value = "USA"}
+
+
+                                                                                                                                                                                                                                       new SelectListItem { Text = "Afghanistan", Value = "Afghanistan"},
+                                                                                                                                                                                                                                         new SelectListItem { Text = "Argentina", Value = "Argentina"},
+                                                                                                                                                                                                                                           new SelectListItem { Text = "Australia", Value = "Australia"},
+                                                                                                                                                                                                                                             new SelectListItem { Text = "Austria", Value = "Austria"},
+                                                                                                                                                                                                                                               new SelectListItem { Text = "Belgium", Value = "Belgium"},
+                                                                                                                                                                                                                                                 new SelectListItem { Text = "Brazil", Value = "Brazil"},
+                                                                                                                                                                                                                                                   new SelectListItem { Text = "Bulgaria", Value = "Bulgaria"},
+                                                                                                                                                                                                                                                     new SelectListItem { Text = "Canada", Value = "Canada"},
+                                                                                                                                                                                                                                                       new SelectListItem { Text = "China", Value = "China"},
+                                                                                                                                                                                                                                                         new SelectListItem { Text = "Colombia", Value = "Colombia"},
+                                                                                                                                                                                                                                                           new SelectListItem { Text = "Croatia", Value = "Croatia"},
+                                                                                                                                                                                                                                                             new SelectListItem { Text = "Cyprus", Value = "Cyprus"},
+                                                                                                                                                                                                                                                               new SelectListItem { Text = "Denmark", Value = "Denmark"},
+                                                                                                                                                                                                                                                                 new SelectListItem { Text = "Finland", Value = "Finland"},
+
+                                                                                                                                                                                                                                                                    new SelectListItem { Text = "France", Value = "France"},
+                                                                                                                                                                                                                                                                     new SelectListItem { Text = "Germany", Value = "Germany"},
+                                                                                                                                                                                                                                                                      new SelectListItem { Text = "Greece", Value = "Greece"},
+                                                                                                                                                                                                                                                                       new SelectListItem { Text = "Hungary", Value = "Hungary"},
+                                                                                                                                                                                                                                                                        new SelectListItem { Text = "Iceland", Value = "Iceland"},
+                                                                                                                                                                                                                                                                         new SelectListItem { Text = "Ireland", Value = "Ireland"},
+                                                                                                                                                                                                                                                                          new SelectListItem { Text = "Israel", Value = "Israel"},
+                                                                                                                                                                                                                                                                           new SelectListItem { Text = "Italy", Value = "Italy"},
+                                                                                                                                                                                                                                                                            new SelectListItem { Text = "Japan", Value = "Japan"},
+                                                                                                                                                                                                                                                                             new SelectListItem { Text = "Kosovo", Value = "Kosovo"},
+                                                                                                                                                                                                                                                                              new SelectListItem { Text = "Luxembourg", Value = "Luxembourg"},
+                                                                                                                                                                                                                                                                               new SelectListItem { Text = "Morocco", Value = "Morocco"},
+                                                                                                                                                                                                                                                                                new SelectListItem { Text = "Netherlands", Value = "Netherlands"},
+                                                                                                                                                                                                                                                                                 new SelectListItem { Text = "Portugal", Value = "Portugal"},
+                                                                                                                                                                                                                                                                                  new SelectListItem { Text = "Russia", Value = "Russia"},
+                                                                                                                                                                                                                                                                                  new SelectListItem { Text = "Romania", Value = "Romania"},
+                                                                                                                                                                                                                                                                                   new SelectListItem { Text = "Serbia", Value = "Serbia"},
+                                                                                                                                                                                                                                                                                    new SelectListItem { Text = "Slovenia", Value = "Slovenia"},
+                                                                                                                                                                                                                                                                                     new SelectListItem { Text = "Sweden", Value = "Sweden"},
+                                                                                                                                                                                                                                                                                      new SelectListItem { Text = "Switzerland", Value = "Switzerland"},
+                                                                                                                                                                                                                                                                                      new SelectListItem { Text = "Turkey", Value = "Turkey"},
+                                                                                                                                                                                                                                                                                   new SelectListItem { Text = "United Arab Emirates", Value = "United Arab Emirates"},
+                                                                                                                                                                                                                                                                                    new SelectListItem { Text = "United Kingdom", Value = "United Kingdom"},
+                                                                                                                                                                                                                                     new SelectListItem { Text = "USA", Value = "USA"},
+                                                                                                                                                                                                                   
+
                                                                                                                                                                                                                                   }, new { @class = "form-control border-input", @style = "width:215px;", @disabled = true, @id = "countryToWork" })
                         </li>
                         <li style="left:25px;">
@@ -565,11 +604,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>From date</label>
-                        <input class="form-control border-input" id="from_date" type="date" />
+                        <input class="form-control border-input" id="from_date_studies" type="date" />
                     </div>
                     <div class="col-md-6">
                         <label>To Date</label>
-                        <input class="form-control border-input" id="to_date" type="date" />
+                        <input class="form-control border-input" id="to_date_studies" type="date" />
                     </div>
                 </div>
 
@@ -956,7 +995,7 @@
 <script type="text/javascript">
 
     var AddExperience = function (Id_candidate) {
-        $("#hiddenId_Education").val(Id_candidate);
+        $("#hiddenId_Experience").val(Id_candidate);
         $("#addExperienceModal").modal('show');
     }
 
@@ -966,7 +1005,7 @@
 
     var confirmAddExperience = function () {
 
-        var savedCandId = $("#hiddenId_Education").val();
+        var savedCandId = $("#hiddenId_Experience").val();
         var companyname = $("#companyName").val();
         var from_date = $("#from_date").val();
         var to_date = $("#to_date").val();
@@ -1005,8 +1044,8 @@
         var savedCandId = $("#hiddenId_Education").val();
         var school = $("#school").val();
         var diploma = $("#diploma").val();
-        var from_date = $("#from_date").val();
-        var to_date = $("#to_date").val();
+        var from_date = $("#from_date_studies").val();
+        var to_date = $("#to_date_studies").val();
         var section = $("#section").val();
 
         $.ajax({
