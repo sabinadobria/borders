@@ -60,25 +60,25 @@ namespace Licenta.Controllers
 
 
                 //loop through every candidate experience and update in database
-                for (int i = 0; i < candidateProfile.CandidateExperience.Count(); i++)
-                {
-                    db.Entry(candidateProfile.CandidateExperience[i]).State = System.Data.Entity.EntityState.Modified;
-                }
-                //loop through every candidate studies and update in database
-                for (int i = 0; i < candidateProfile.CandidateStudies.Count(); i++)
-                {
-                    db.Entry(candidateProfile.CandidateStudies[i]).State = System.Data.Entity.EntityState.Modified;
-                }
-                //loop through every candidate tech and update in database
-                for (int i = 0; i < candidateProfile.CandidateTechnologies.Count(); i++)
-                {
-                    db.Entry(candidateProfile.CandidateTechnologies[i]).State = System.Data.Entity.EntityState.Modified;
-                }
-                //loop through every candidate languages and update in database
-                for (int i = 0; i < candidateProfile.CandidateLanguages.Count(); i++)
-                {
-                    db.Entry(candidateProfile.CandidateLanguages[i]).State = System.Data.Entity.EntityState.Modified;
-                }
+                //for (int i = 0; i < candidateProfile.CandidateExperience.Count(); i++)
+                //{
+                //    db.Entry(candidateProfile.CandidateExperience[i]).State = System.Data.Entity.EntityState.Modified;
+                //}
+                ////loop through every candidate studies and update in database
+                //for (int i = 0; i < candidateProfile.CandidateStudies.Count(); i++)
+                //{
+                //    db.Entry(candidateProfile.CandidateStudies[i]).State = System.Data.Entity.EntityState.Modified;
+                //}
+                ////loop through every candidate tech and update in database
+                //for (int i = 0; i < candidateProfile.CandidateTechnologies.Count(); i++)
+                //{
+                //    db.Entry(candidateProfile.CandidateTechnologies[i]).State = System.Data.Entity.EntityState.Modified;
+                //}
+                ////loop through every candidate languages and update in database
+                //for (int i = 0; i < candidateProfile.CandidateLanguages.Count(); i++)
+                //{
+                //    db.Entry(candidateProfile.CandidateLanguages[i]).State = System.Data.Entity.EntityState.Modified;
+                //}
                 //perform the update in all the tables 
                 try
                 {

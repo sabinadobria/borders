@@ -450,6 +450,7 @@
                                                 <div class="col-md-3 col-centered">
                                                     <div class="form-group">
                                                         <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -676,7 +677,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Language</label>
+                        <label>Technology</label>
                         <input class="form-control border-input" placeholder="Ex: Java" id="techName" />
                     </div>
                     <div class="col-md-6">
