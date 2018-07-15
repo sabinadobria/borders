@@ -117,7 +117,7 @@
                                                                                                                                                                                                                                                                                    new SelectListItem { Text = "United Arab Emirates", Value = "United Arab Emirates"},
                                                                                                                                                                                                                                                                                     new SelectListItem { Text = "United Kingdom", Value = "United Kingdom"},
                                                                                                                                                                                                                                      new SelectListItem { Text = "USA", Value = "USA"},
-                                                                                                                                                                                                                   
+
 
                                                                                                                                                                                                                                   }, new { @class = "form-control border-input", @style = "width:215px;", @disabled = true, @id = "countryToWork" })
                         </li>
@@ -450,7 +450,7 @@
                                                 <div class="col-md-3 col-centered">
                                                     <div class="form-group">
                                                         <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
-                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="EditTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -529,6 +529,46 @@
     }
 </body>
 </html>
+
+
+
+<!--Edit tech modal-->
+<div class="modal fade" id="editTechModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Edit this technology </h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Technology</label>
+                        <input class="form-control border-input" placeholder="Ex: Java" id="techName"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Level</label>
+                        <select id="techLevel" class="form-control border-input">
+                            <option>Senior</option>
+                            <option>Middle</option>
+                            <option>Junior</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick ="confirmEditTech()">Confirm</a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
 
 <!--Add experience modal-->
 <div class="modal fade" id="addExperienceModal">
@@ -1126,6 +1166,43 @@
         })
     }
 </script>
+
+<!-- edit tech row-->
+<script type="text/javascript">
+
+    var EditTech = function (Id_candidate, id_tech) {
+        $("#hiddenId_Candidate").val(Id_candidate);
+        $("#hiddenId_Tech").val(id_tech);
+
+        $("#editTechModal").modal('show');
+    }
+
+
+</script>
+<script type="text/javascript">
+
+    var confirmEditTech = function () {
+
+        var savedCandId = $("#hiddenId_Candidate").val();
+        var savedTechId = $("#hiddenId_Tech").val();
+
+        var techName = $("#techName").val();
+        var techLevel = $("#techLevel").val();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '@Url.Action("EditTech", "User")',
+            data: { Id_candidate: savedCandId, id_tech: savedTechId, tech_name: techName, tech_level: techLevel},
+
+            success: function (result) {
+                $("#editTechModal").modal('hide');
+                top.location.href = '/User/UserProfile';
+            }
+        })
+    }
+</script>
+
 
 <!--custom css for centering rows and columns-->
 <style>

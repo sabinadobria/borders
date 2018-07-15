@@ -178,8 +178,6 @@ namespace Licenta.Controllers
             db.SaveChanges();
 
             result = true;
-           
-
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -261,10 +259,26 @@ namespace Licenta.Controllers
                 db.CandidateExperiences.Remove(candidateExperience);
                 db.SaveChanges();
                 result = true;
-            }
+            }   
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
- 
+
+        //Edit  tech 
+        public JsonResult EditTech(int? Id_candidate, int id_tech, string tech_level, string tech_name)
+        {
+            
+            CandidateTechnologies toUpdate = db.CandidateTechnologies.Single(x => x.id_candidate == Id_candidate && x.id_tech == id_tech);
+            bool result = false;
+
+            toUpdate.tech_name = tech_name;
+            toUpdate.tech_level = tech_level;
+            
+             db.SaveChanges();
+
+            result = true;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
