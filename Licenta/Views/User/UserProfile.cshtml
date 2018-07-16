@@ -176,111 +176,112 @@
                                     @*<form id="target">*@
                                     <h4 class="title"><strong>Contact Data</strong></h4>
                                     <br />
-                                    <dv id="target">
+                                    <div id="target">
+                                        <div id="contactData">
+                                            @Html.ValidationSummary(true, "", new { @style = "color:red" })
+                                            <div class="row row-centered">
+                                                @Html.HiddenFor(model => model.Id_candidate)
 
-                                        @Html.ValidationSummary(true, "", new { @style = "color:red" })
-                                        <div class="row row-centered">
-                                            @Html.HiddenFor(model => model.Id_candidate)
+                                                @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
 
-                                            @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
 
-                                            {
-                                                @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
-                                                @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
+                                                }
+                                                @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
 
-                                            }
-                                            @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
 
-                                            {
-                                                @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
-                                                @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
+                                                }
 
-                                            }
+                                                @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
 
-                                            @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
 
-                                            {
-                                                @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
-                                                @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
+                                                }
+                                                @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
 
-                                            }
-                                            @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
 
-                                            {
-                                                @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
-                                                @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
-
-                                            }
+                                                }
 
 
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.First_name)
-                                                    @Html.TextBoxFor(user => user.First_name, new { @class = "form-control border-input", @placeholder = "Enter first name", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.First_name)
+                                                        @Html.TextBoxFor(user => user.First_name, new { @class = "form-control border-input", @placeholder = "Enter first name", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.First_name, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Last_name)
+                                                        @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control border-input", @placeholder = "Enter last name", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Last_name)
-                                                    @Html.TextBoxFor(user => user.Last_name, new { @class = "form-control border-input", @placeholder = "Enter last name", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.Last_name, "", new { @class = "text-danger" })
+                                            <div class="row row-centered">
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Email)
+                                                        @Html.TextBoxFor(user => user.Email, new { @class = "form-control border-input", @placeholder = "Enter email", @disabled = true })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Phone)
+                                                        @Html.TextBoxFor(user => user.Phone, new { @class = "form-control border-input", @placeholder = "Enter phone", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.Phone, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row row-centered">
+                                                <div class="col-md-10 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Address)
+                                                        @Html.TextBoxFor(user => user.Address, new { @class = "form-control border-input", @placeholder = "Enter address", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.Address, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row row-centered">
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Email)
-                                                    @Html.TextBoxFor(user => user.Email, new { @class = "form-control border-input", @placeholder = "Enter email", @disabled = true })
 
+                                            <div class="row row-centered">
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.City)
+                                                        @Html.TextBoxFor(user => user.City, new { @class = "form-control border-input", @placeholder = "Enter city", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.City, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.Country)
+                                                        @Html.TextBoxFor(user => user.Country, new { @class = "form-control border-input", @placeholder = "Enter country", @disabled = true })
+                                                        @Html.ValidationMessageFor(user => user.Country, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Phone)
-                                                    @Html.TextBoxFor(user => user.Phone, new { @class = "form-control border-input", @placeholder = "Enter phone", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.Phone, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row row-centered">
-                                            <div class="col-md-10 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Address)
-                                                    @Html.TextBoxFor(user => user.Address, new { @class = "form-control border-input", @placeholder = "Enter address", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.Address, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row row-centered">
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.City)
-                                                    @Html.TextBoxFor(user => user.City, new { @class = "form-control border-input", @placeholder = "Enter city", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.City, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.Country)
-                                                    @Html.TextBoxFor(user => user.Country, new { @class = "form-control border-input", @placeholder = "Enter country", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.Country, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
 
 
 
-                                        <div class="row row-centered">
-                                            <div class="col-md-10 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.AboutMe)
-                                                    @Html.TextAreaFor(user => user.AboutMe, new { @class = "form-control border-input", @rows = "5", @disabled = true })
-                                                    @Html.ValidationMessageFor(user => user.AboutMe, "", new { @class = "text-danger" })
+                                            <div class="row row-centered">
+                                                <div class="col-md-10 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.AboutMe)
+                                                        @Html.TextAreaFor(user => user.AboutMe, new { @class = "form-control border-input", @rows = "5", @disabled = true, @id= "aboutme" })
+                                                        @Html.ValidationMessageFor(user => user.AboutMe, "", new { @class = "text-danger" })
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,6 +338,8 @@
                                                     <div class="col-md-1 col-centered">
                                                         <div class="form-group">
                                                             <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" onclick="ConfirmDeleteExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
+                                                            <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="EditExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,6 +410,8 @@
                                                     <div class="col-md-1 col-centered">
                                                         <div class="form-group">
                                                             <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" onclick="ConfirmDeleteEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
+                                                            <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="EditEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -494,6 +499,8 @@
                                                 <div class="col-md-3 col-centered">
                                                     <div class="form-group">
                                                         <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" onclick="ConfirmDeleteLang(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" onclick="EditLanguage(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -519,15 +526,19 @@
                                         </div>
 
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     }
 </body>
+
 </html>
 
 
@@ -869,11 +880,12 @@
 <!--enable forms to update-->
 <script>
     function editProfile() {
-        $("#target input, textarea").prop("disabled", false);
-        $("#target select, textarea").prop("disabled", false);
+        //$("#target input, textarea").prop("disabled", false);
+        //$("#target select, textarea").prop("disabled", false);
         $("#countryToWork").prop("disabled", false);
         $("#Interest").prop("disabled", false);
-        $("#tech_level").prop("disabled", false);
+        $("#contactData input").prop("disabled", false);
+        $("#aboutme").prop("disabled", false);
     }
 </script>
 
@@ -1168,6 +1180,8 @@
 </script>
 
 <!-- edit tech row-->
+
+
 <script type="text/javascript">
 
     var EditTech = function (Id_candidate, id_tech) {
