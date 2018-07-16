@@ -46,7 +46,7 @@ namespace Licenta.Controllers
 
 
                         //getting logged in user details
-                        var dummyModel = db.CandidateProfiles.Single(cand => cand.Id_candidate == id);
+                        var dummyModel = db.CandidateProfiles.SingleOrDefault(cand => cand.Id_candidate == id);
 
                         //getting the full name of the logged in user to be displayed on the UserProfile page
                         Session["user_name"] = dummyModel.First_name + " " + dummyModel.Last_name;
@@ -159,9 +159,9 @@ namespace Licenta.Controllers
             string mailBody = "";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("viorelvasile15@gmail.com", "Viorel Vasile");
+            var fromEmail = new MailAddress("contactnoborders@gmail.com", "NoBorders");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "napbofhsyzzmiqcq";
+            var fromEmailPassword = "wurqoasfwolniiim";
 
             mailSubject = "Reset password";
             mailBody = "Hi, <br/> <br/> We got a request for reset your account password. Please click on the below link to reset your password." +
@@ -276,6 +276,7 @@ namespace Licenta.Controllers
             else
             {
                 message = "Something invalid";
+                return View();
             }
             ViewBag.Message = message;
             return View(model);

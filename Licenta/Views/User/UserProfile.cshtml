@@ -179,33 +179,33 @@
 
                                                 @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
 
-            {
-                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
-                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateExperience[i].Id_experience)
 
-}
+                                                }
                                                 @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
 
-            {
-                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
-                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateStudies[i].id_education)
 
-}
+                                                }
 
                                                 @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
 
-            {
-                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
-                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateTechnologies[i].id_tech)
 
-}
+                                                }
                                                 @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
 
-            {
-                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
-                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
+                                                {
+                                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_candidate)
+                                                    @Html.HiddenFor(model => model.CandidateLanguages[i].id_language)
 
-}
+                                                }
 
 
                                                 <div class="col-md-5 col-centered">
@@ -227,8 +227,8 @@
                                                 <div class="col-md-5 col-centered">
                                                     <div class="form-group">
                                                         @Html.LabelFor(user => user.Email)
-                                                        @Html.TextBoxFor(user => user.Email, new { @class = "form-control border-input", @placeholder = "Enter email", @disabled = true })
-
+                                                        @Html.TextBoxFor(user => user.Email, new { @class = "form-control border-input", @placeholder = "Enter email", @disabled = true, @id="emailCandidate" })
+                                                        @Html.ValidationMessageFor(user => user.Email, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 col-centered">
@@ -281,6 +281,13 @@
                                             </div>
                                         </div>
 
+                                        <div class="text-center">
+
+                                            <button type="submit" class="btn btn-info btn-fill classTest" id="updateBtn" disabled>Update Data</button>
+                                            <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Data</button>
+
+                                        </div>
+
                                         <br />
                                         <br />
                                         <h4 class="title"><strong>Experience</strong></h4>
@@ -290,57 +297,57 @@
                                             <strong>Experience successfully removed.</strong>
                                         </div>
                                         @for (int i = 0; i < Model.CandidateExperience.Count(); i++)
-    {
-                                    <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateExperience[i].Id_experience">
-                                        <div class="row row-centered" style="margin-right:1px;">
-                                            <div class="col-md-3 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateExperience[i].company_name)
-                                                    @Html.TextBoxFor(user => user.CandidateExperience[i].company_name, new { @class = "form-control border-input", @disabled = true })
+                                        {
+                                            <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateExperience[i].Id_experience">
+                                                <div class="row row-centered" style="margin-right:1px;">
+                                                    <div class="col-md-3 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].company_name)
+                                                            @Html.TextBoxFor(user => user.CandidateExperience[i].company_name, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].from_date)
+                                                            @Html.TextBoxFor(user => user.CandidateExperience[i].from_date, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].to_date)
+                                                            @Html.TextBoxFor(user => user.CandidateExperience[i].to_date, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].position)
+                                                            @Html.TextBoxFor(user => user.CandidateExperience[i].position, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateExperience[i].from_date)
-                                                    @Html.TextBoxFor(user => user.CandidateExperience[i].from_date, new { @class = "form-control border-input", @disabled = true })
+
+                                                <div class="row row-centered">
+                                                    <div class="col-md-10 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateExperience[i].description)
+                                                            @Html.TextAreaFor(user => user.CandidateExperience[i].description, new { @class = "form-control border-input", @rows = "5", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-centered" style="margin-left:1px;">
+                                                    <div class="col-md-1 col-centered">
+                                                        <div class="form-group">
+                                                            <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
+                                                            <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateExperience[i].to_date)
-                                                    @Html.TextBoxFor(user => user.CandidateExperience[i].to_date, new { @class = "form-control border-input", @disabled = true })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateExperience[i].position)
-                                                    @Html.TextBoxFor(user => user.CandidateExperience[i].position, new { @class = "form-control border-input", @disabled = true })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row row-centered">
-                                            <div class="col-md-10 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateExperience[i].description)
-                                                    @Html.TextAreaFor(user => user.CandidateExperience[i].description, new { @class = "form-control border-input", @rows = "5", @disabled = true })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row row-centered" style="margin-left:1px;">
-                                            <div class="col-md-1 col-centered">
-                                                <div class="form-group">
-                                                    <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
-                                                    <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" data-toggle="tooltip" data-placement="top" title="Edit "onclick="EditExperience(@Model.Id_candidate, @Model.CandidateExperience[i].Id_experience)"></i></a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-}
+                                        }
 
                                         <input type="hidden" id="hiddenId_Experience" />
                                         <div class="form-group">
@@ -363,56 +370,56 @@
                                             <strong>Studies successfully removed.</strong>
                                         </div>
                                         @for (int i = 0; i < Model.CandidateStudies.Count(); i++)
-    {
-                                    <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateStudies[i].id_education">
+                                        {
+                                            <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateStudies[i].id_education">
 
-                                        <div class="row row-centered" style="margin-left:1px;">
-                                            <div class="col-md-4 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateStudies[i].school)
-                                                    @Html.TextBoxFor(user => user.CandidateStudies[i].school, new { @class = "form-control border-input", @disabled = true })
+                                                <div class="row row-centered" style="margin-left:1px;">
+                                                    <div class="col-md-4 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateStudies[i].school)
+                                                            @Html.TextBoxFor(user => user.CandidateStudies[i].school, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateStudies[i].section)
+                                                            @Html.TextBoxFor(user => user.CandidateStudies[i].section, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateStudies[i].diploma)
+                                                            @Html.TextBoxFor(user => user.CandidateStudies[i].diploma, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateStudies[i].section)
-                                                    @Html.TextBoxFor(user => user.CandidateStudies[i].section, new { @class = "form-control border-input", @disabled = true })
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateStudies[i].diploma)
-                                                    @Html.TextBoxFor(user => user.CandidateStudies[i].diploma, new { @class = "form-control border-input", @disabled = true })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row row-centered" style="margin-left:1px;">
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateStudies[i].from_date)
-                                                    @Html.TextBoxFor(user => user.CandidateStudies[i].from_date, new { @class = "form-control border-input", @disabled = true })
-                                                </div>
-                                            </div>
+                                                <div class="row row-centered" style="margin-left:1px;">
+                                                    <div class="col-md-5 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateStudies[i].from_date)
+                                                            @Html.TextBoxFor(user => user.CandidateStudies[i].from_date, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
 
-                                            <div class="col-md-5 col-centered">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(user => user.CandidateStudies[i].to_date)
-                                                    @Html.TextBoxFor(user => user.CandidateStudies[i].to_date, new { @class = "form-control border-input", @disabled = true })
+                                                    <div class="col-md-5 col-centered">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(user => user.CandidateStudies[i].to_date)
+                                                            @Html.TextBoxFor(user => user.CandidateStudies[i].to_date, new { @class = "form-control border-input", @disabled = true })
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row row-centered" style="margin-left:1px;">
-                                            <div class="col-md-1 col-centered">
-                                                <div class="form-group">
-                                                    <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;"data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
-                                                    <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;"data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
+                                                <div class="row row-centered" style="margin-left:1px;">
+                                                    <div class="col-md-1 col-centered">
+                                                        <div class="form-group">
+                                                            <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
+                                                            <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditEducation(@Model.Id_candidate, @Model.CandidateStudies[i].id_education)"></i></a>
 
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-}
+                                            </div>
+                                        }
                                         <input type="hidden" id="hiddenId_Education" />
                                         <div class="form-group">
                                             <label>Add more</label>
@@ -432,29 +439,29 @@
                                             <strong>Technology successfully removed.</strong>
                                         </div>
                                         @for (int i = 0; i < Model.CandidateTechnologies.Count(); i++)
-    {
+                                        {
 
-                                    <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateTechnologies[i].id_tech">
-                                        <div class="col-md-4 col-centered">
-                                            <div class="form-group">
-                                                @Html.LabelFor(user => user.CandidateTechnologies[i].tech_name)
-                                                @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_name, new { @class = "form-control border-input", @disabled = true })
+                                            <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateTechnologies[i].id_tech">
+                                                <div class="col-md-4 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateTechnologies[i].tech_name)
+                                                        @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_name, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-centered">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(user => user.CandidateTechnologies[i].tech_level)
+                                                        @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_level, new { @class = "form-control border-input", @disabled = true })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-centered">
+                                                    <div class="form-group">
+                                                        <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-3 col-centered">
-                                            <div class="form-group">
-                                                @Html.LabelFor(user => user.CandidateTechnologies[i].tech_level)
-                                                @Html.TextBoxFor(user => user.CandidateTechnologies[i].tech_level, new { @class = "form-control border-input", @disabled = true })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-centered">
-                                            <div class="form-group">
-                                                <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;"data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
-                                                <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;"data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditTech(@Model.Id_candidate, @Model.CandidateTechnologies[i].id_tech)"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-}
+                                        }
 
                                         <input type="hidden" id="hiddenId_Tech" />
 
@@ -477,7 +484,7 @@
                                         </div>
                                         @for (int i = 0; i < Model.CandidateLanguages.Count(); i++)
 
-                                       {
+                                        {
 
                                             <div class="row row-centered" style="margin-right:1px;" id="row_@Model.Id_candidate@Model.CandidateLanguages[i].id_language">
                                                 <div class="col-md-4 col-centered">
@@ -494,8 +501,8 @@
                                                 </div>
                                                 <div class="col-md-3 col-centered">
                                                     <div class="form-group">
-                                                        <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;"data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteLang(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
-                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;"data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditLanguage(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-trash img-fluid" style="color:red;" data-toggle="tooltip" data-placement="top" title="Remove " onclick="ConfirmDeleteLang(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
+                                                        <a href="#"><i class="glyphicon glyphicon-edit img-fluid" style="color:green;" data-toggle="tooltip" data-placement="top" title="Edit " onclick="EditLanguage(@Model.Id_candidate, @Model.CandidateLanguages[i].id_language)"></i></a>
 
                                                     </div>
                                                 </div>
@@ -514,12 +521,7 @@
 
 
                                         <div class="clearfix"></div>
-                                        <div class="text-center">
 
-                                            <button type="submit" class="btn btn-info btn-fill classTest">Update Profile</button>
-                                            <button type="button" class="btn btn-info btn-fill" onclick="editProfile()">Edit Profile</button>
-
-                                        </div>
 
 
                                     </div>
@@ -1021,6 +1023,8 @@
         $("#Interest").prop("disabled", false);
         $("#contactData input").prop("disabled", false);
         $("#aboutme").prop("disabled", false);
+        $("#updateBtn").prop("disabled", false);
+        //$("emailCandidate").prop("disabled");
     }
 </script>
 

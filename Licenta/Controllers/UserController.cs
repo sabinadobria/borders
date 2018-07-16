@@ -12,18 +12,19 @@ namespace Licenta.Controllers
 {
     public class UserController : Controller
     {
+        string oldEmail = null;
         NoBordersDB db = new NoBordersDB();
         // GET:UserDetails
         public ActionResult UserProfile()
         {
             NoBordersDB db = new NoBordersDB();
             int candidateId = Convert.ToInt32(Session["candidate_id"]);
-
+            
             try
             {
                 //get contact data details for logged in user
                 var candidate = db.CandidateProfiles.Single(cand => cand.Id_candidate == candidateId);
-
+                
                 //get the list of all the experiences for the logged in user
                 candidate.CandidateExperience = db.CandidateExperiences.Where(x => x.Id_candidate == candidateId).ToList();
                 //get the list of all the studies for the logged user
@@ -57,8 +58,7 @@ namespace Licenta.Controllers
                 //update candidate contact data
                 db.Entry(candidateProfile).State = System.Data.Entity.EntityState.Modified;
                 Session["user_name"] = candidateProfile.First_name + " " + candidateProfile.Last_name;
-
-
+               
                 //loop through every candidate experience and update in database
                 //for (int i = 0; i < candidateProfile.CandidateExperience.Count(); i++)
                 //{

@@ -14,13 +14,13 @@ namespace Licenta.Models
         
         [Key]
         public int Id_candidate { set; get; }
-
+        [Required(ErrorMessage = "Last name is required")]
         [Display(Name ="Last Name")]
         public string Last_name { get; set; }
-
+        [Required(ErrorMessage = "First name is required")]
         [Display(Name = "First Name")]
         public string First_name { get; set; }
-
+        [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
