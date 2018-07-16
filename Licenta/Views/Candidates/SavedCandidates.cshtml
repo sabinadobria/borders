@@ -377,9 +377,11 @@
                 $("#deleteSavedCandidate").modal('hide');
                 $("#row_" + savedCandId).remove();
                 $("#successAlertDelete").show('fade');
+                top.location.href = '/Candidates/SavedCandidates';
                 setTimeout(function () {
-                    $("#successAlertDelete").hide('fade');
+                    $("#successAlertDelete").delay(1000).hide('fade');
                 }, 2000);
+               
             }
         })
     }

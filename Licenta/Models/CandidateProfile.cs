@@ -21,6 +21,7 @@ namespace Licenta.Models
         [Display(Name = "First Name")]
         public string First_name { get; set; }
         [Required(ErrorMessage = "Email is required")]
+        
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }

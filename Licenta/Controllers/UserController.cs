@@ -12,7 +12,7 @@ namespace Licenta.Controllers
 {
     public class UserController : Controller
     {
-        string oldEmail = null;
+        //string oldEmail = null;
         NoBordersDB db = new NoBordersDB();
         // GET:UserDetails
         public ActionResult UserProfile()

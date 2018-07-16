@@ -13,6 +13,7 @@ namespace Licenta.Models
         public string company_name { get; set; }
         [Required]
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage ="This is not a valid email.")]
         public string email { get; set; }
         [Required]
         [Display(Name = "First name")]

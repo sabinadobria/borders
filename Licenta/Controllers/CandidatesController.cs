@@ -26,7 +26,7 @@ namespace Licenta.Controllers
 
             try
             {
-                List<CandidateProfile> candidateProfiles = db.CandidateProfiles.ToList();
+                List<CandidateProfile> candidateProfiles = db.CandidateProfiles.Where(x=>x.Interest!= "Not interested").ToList();
 
                 List<CandidateExperience> candidateExperiences = db.CandidateExperiences.ToList();
 
@@ -46,8 +46,7 @@ namespace Licenta.Controllers
                 }
             
                 
-                //return View(result);
-                //if (result.tech_level)
+               
               
 
                 return View(candidateProfiles);

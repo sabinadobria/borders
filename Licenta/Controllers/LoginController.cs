@@ -91,6 +91,7 @@ namespace Licenta.Controllers
 
             NoBordersDB db = new NoBordersDB();
             var checkmail = db.Users.SingleOrDefault(x => x.email == candidate.email);
+            string message = "";
             //check if email is allready created
             if (checkmail == null)
             {
@@ -115,7 +116,10 @@ namespace Licenta.Controllers
                     return View();
                 }
             }
+            message = "This address is allready in use,please insert other email.";
+            ViewBag.Message = message;
             return View();
+
 
         }
         [HttpGet]
@@ -137,6 +141,7 @@ namespace Licenta.Controllers
                     {
                         RecruiterRegisterDL recruiterDL = new RecruiterRegisterDL();
                         recruiterDL.registerRecruiter(company);
+                        Session["Recruiter_email"] = company.email;
                         return RedirectToAction("CandidatesList", "Candidates");
                     }
                     return View();

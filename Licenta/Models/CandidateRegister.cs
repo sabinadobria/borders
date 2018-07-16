@@ -10,6 +10,7 @@ namespace Licenta.Models
     {
         [Required]
         [Display (Name = "Email")]
+        [EmailAddress(ErrorMessage ="This is not a valid email address.")]
         public string email { get; set; }
 
         [Required]
