@@ -167,6 +167,7 @@
     <Compile Include="Models\CandidateProfile.cs" />
     <Compile Include="Models\CandidateStudies.cs" />
     <Compile Include="Models\CandidateTechnologies.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\SavedCandidate.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\CandidateRegister.cs" />
@@ -383,6 +384,8 @@
     <Content Include="Views\Candidates\SaveProfile.cshtml" />
     <Content Include="Views\Candidates\Delete.cshtml" />
     <Content Include="Views\Candidates\SetCandidateProces.cshtml" />
+    <Content Include="Views\User\_EditTech.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

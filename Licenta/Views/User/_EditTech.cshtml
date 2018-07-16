@@ -1,0 +1,23 @@
+﻿@model Licenta.Models.CandidateTechnologies
+
+<div>
+    <form id="myForm">
+        @Html.HiddenFor(m => m.id_candidate)
+        @Html.HiddenFor(m => m.id_tech)
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Technology</label>
+                @Html.TextBoxFor(m=>m.tech_name, new  {@class="form-control border-input" } )
+            </div>
+            <div class="col-md-6">
+                <label>Level</label>
+                <select id="techLevel" class="form-control border-input">
+                    <option>Senior</option>
+                    <option>Middle</option>
+                    <option>Junior</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

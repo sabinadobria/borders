@@ -264,15 +264,24 @@ namespace Licenta.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+
+        //public ActionResult EditTech(int? Id_candidate, int id_tech)
+        //{
+        //    CandidateTechnologies toUpdateTech = db.CandidateTechnologies.SingleOrDefault(x => x.id_candidate == Id_candidate && x.id_tech == id_tech);
+
+        //    return PartialView("_EditTech",toUpdateTech);
+        //}
+
+
         //Edit  tech 
         public JsonResult EditTech(int? Id_candidate, int id_tech, string tech_level, string tech_name)
         {
             
-            CandidateTechnologies toUpdate = db.CandidateTechnologies.Single(x => x.id_candidate == Id_candidate && x.id_tech == id_tech);
+            CandidateTechnologies techToUpdate = db.CandidateTechnologies.Single(x => x.id_candidate == Id_candidate && x.id_tech == id_tech);
             bool result = false;
 
-            toUpdate.tech_name = tech_name;
-            toUpdate.tech_level = tech_level;
+            techToUpdate.tech_name = tech_name;
+            techToUpdate.tech_level = tech_level;
             
              db.SaveChanges();
 
@@ -280,5 +289,58 @@ namespace Licenta.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        //Edit  language 
+        public JsonResult EditLanguage(int? Id_candidate,int id_language, string language, string language_level)
+        {
+
+            CandidateLanguages languageToUpdate = db.CandidateLanguages.Single(x => x.id_candidate == Id_candidate && x.id_language == id_language);
+            bool result = false;
+
+            languageToUpdate.language = language;
+            languageToUpdate.language_level = language_level;
+
+            db.SaveChanges();
+
+            result = true;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //Edit  studies 
+        public JsonResult EditStudies(int? Id_candidate, int id_education,string school, string diploma, string from_date, string to_date, string section)
+        {
+
+            CandidateStudies studiesToUpdate = db.CandidateStudies.Single(x => x.id_candidate == Id_candidate && x.id_education == id_education);
+            bool result = false;
+
+            studiesToUpdate.school = school;
+            studiesToUpdate.diploma = diploma;
+            studiesToUpdate.from_date = from_date;
+            studiesToUpdate.to_date = to_date;
+            studiesToUpdate.section = section;
+
+            db.SaveChanges();
+
+            result = true;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        //Edit  experience 
+        public JsonResult EditExperience(int? Id_candidate, int id_experience,string companyname, string from_date, string to_date, string description, string position)
+        {
+
+            CandidateExperience experienceToUpdate = db.CandidateExperiences.Single(x => x.Id_candidate == Id_candidate && x.Id_experience == id_experience);
+            bool result = false;
+
+            experienceToUpdate.company_name = companyname;
+            experienceToUpdate.from_date = from_date;
+            experienceToUpdate.to_date = to_date;
+            experienceToUpdate.description = description;
+            experienceToUpdate.position = position;
+
+            db.SaveChanges();
+
+            result = true;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

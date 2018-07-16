@@ -6,7 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -24,15 +27,15 @@ namespace Licenta.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserBus userBus,UserModel user)
+        public ActionResult Login(UserBus userBus, UserModel user)
         {
             if (ModelState.IsValid)
             {
-                if (userBus.IsValid(user.email, user.password,user.userTypeId))
-                   {
+                if (userBus.IsValid(user.email, user.password, user.userTypeId))
+                {
                     CandidateProfileDL candDl = new CandidateProfileDL();
                     NoBordersDB db = new NoBordersDB();
-                    
+
                     //checking the user type ( candidate/recruiter)
                     var ut = userBus.userTypeId(user.email, user.password);
                     if (ut == 1)
@@ -113,7 +116,7 @@ namespace Licenta.Controllers
                 }
             }
             return View();
-             
+
         }
         [HttpGet]
         public ActionResult RegisterCompany()
@@ -148,9 +151,136 @@ namespace Licenta.Controllers
             return View();
         }
 
+        [NonAction]
+        public void SendVerificationLinkEmail(string email, string resetCode)
+        {
+            var verifyUrl = "/Login/ResetPassword/" + resetCode;
+            string mailSubject = "";
+            string mailBody = "";
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+            var fromEmail = new MailAddress("viorelvasile15@gmail.com", "Viorel Vasile");
+            var toEmail = new MailAddress(email);
+            var fromEmailPassword = "napbofhsyzzmiqcq";
+
+            mailSubject = "Reset password";
+            mailBody = "Hi, <br/> <br/> We got a request for reset your account password. Please click on the below link to reset your password." +
+                "<br/><br/><a href=" + link + "> Reset password link </a>";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = mailSubject,
+                Body = mailBody,
+                IsBodyHtml = true
+            })
+
+                smtp.Send(message);
+
+        }
+
         public ActionResult ForgotPassword()
         {
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(string email)
+        {
+
+            //check if the email is valid 
+            //generate reset password link
+            //sent email 
+
+            string message = "";
+            bool status = false;
+
+
+            using (NoBordersDB db = new NoBordersDB())
+            {
+                var account = db.Users.Where(x => x.email == email).FirstOrDefault();
+                if (account != null)
+                {
+                    //send email for reset password 
+                    string resetCode = Guid.NewGuid().ToString();
+
+                    SendVerificationLinkEmail(account.email, resetCode);
+                    account.reset_password_code = resetCode;
+
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+                    message = "Reset password link has been sent to your email.";
+                }
+                else
+                {
+                    message = "This is not a register email, please check again.";
+                }
+            }
+
+            ViewBag.Message = message;
+            return View();
+        }
+
+        public ActionResult ResetPassword(string id)
+        {
+            //verify the reset password link
+            //find account associated with the link
+            //redirect to reset password page
+
+
+            using (NoBordersDB db = new NoBordersDB())
+            {
+                var user = db.Users.Where(x => x.reset_password_code == id).FirstOrDefault();
+
+                if (user != null)
+                {
+                    ResetPasswordModel model = new ResetPasswordModel();
+                    model.ResetCode = id;
+                    return View(model);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+
+            var message = "";
+            if (ModelState.IsValid)
+            {
+                using (NoBordersDB db = new NoBordersDB())
+                {
+                    var user = db.Users.Where(a => a.reset_password_code == model.ResetCode).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.password = /*Crypto.Hash(*/model.NewPassword;
+                        user.reset_password_code = "";
+                        db.Configuration.ValidateOnSaveEnabled = false;
+                        db.SaveChanges();
+                        message = "New password updated successfully";
+                    }
+                }
+            }
+            else
+            {
+                message = "Something invalid";
+            }
+            ViewBag.Message = message;
+            return View(model);
         }
     }
 }

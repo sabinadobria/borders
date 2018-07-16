@@ -28,6 +28,8 @@ namespace Licenta.Models
 
         public int userTypeId { get; set; }
 
+        public string reset_password_code { get; set; }
+
 
     }
 }
