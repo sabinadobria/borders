@@ -202,8 +202,6 @@ namespace Licenta.Controllers
             //sent email 
 
             string message = "";
-            bool status = false;
-
 
             using (NoBordersDB db = new NoBordersDB())
             {
